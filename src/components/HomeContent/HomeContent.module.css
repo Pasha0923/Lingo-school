@@ -1,0 +1,254 @@
+.homeContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+}
+
+.contentContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* ------------------------------------text------------------------------------ */
+
+.textContainer {
+  background-color: var(--gray-background-color);
+  border-radius: 30px;
+  width: 320px;
+  height: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 24px;
+}
+
+.title {
+  font-size: 32px;
+  font-weight: 500;
+  line-height: 1.17;
+  margin-bottom: 24px;
+}
+
+.span {
+  background-color: var(--light-color);
+  border-radius: 8px;
+  font-style: italic;
+  font-weight: 400;
+}
+
+.text {
+  margin-bottom: 32px;
+}
+
+.btn {
+  height: 60px;
+  color: var(--black-color);
+  background-color: var(--main-color);
+  border-radius: 12px;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.6;
+  padding: 16px 88px;
+}
+
+.btn:hover {
+  background-color: var(--hover-color);
+  transition: background-color 200ms linear;
+}
+
+/* ------------------------------------image------------------------------------ */
+
+.imgContainer {
+  width: 320px;
+  height: 350px;
+  background-color: var(--light-color);
+  border-radius: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.container {
+  position: absolute;
+  height: 265px;
+  width: 302px;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+}
+
+.girlImg {
+  width: 200px;
+  height: 200px;
+}
+
+.iMacContainer {
+  background: linear-gradient(
+    var(--light-iMac-gradient) 0%,
+    var(--dark-iMac-gradient) 100%
+  );
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  width: 212px;
+  height: 104px;
+  position: absolute;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.iMacIcon {
+  width: 27px;
+  height: 31px;
+  background: linear-gradient(
+    var(--light-apple-gradient) 0%,
+    var(--dark-apple-gradient) 100%
+  );
+  mask-image: url("../../assets/iMac.svg");
+  mask-size: contain;
+  mask-repeat: no-repeat;
+  background-clip: border-box;
+}
+
+/* ------------------------------------statistic------------------------------------ */
+
+.statisticContainer {
+  background-image: var(--background-image);
+  background-repeat: no-repeat;
+  background-size: auto;
+  border-radius: 30px;
+  width: 320px;
+}
+
+.statisticList {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 100%;
+  padding: 24px;
+  row-gap: 24px;
+  column-gap: 50px;
+}
+
+.statisticItem {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 8px;
+}
+
+.statisticTitle {
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.14;
+  white-space: nowrap;
+}
+
+.statisticText {
+  font-size: 14px;
+  line-height: 1.3;
+  color: var(--statistic-text-color);
+  width: 74px;
+}
+
+@media screen and (min-width: 768px) {
+  .textContainer {
+    width: 700px;
+    height: 530px;
+    padding: 0 64px;
+  }
+
+  .title {
+    font-size: 48px;
+    margin-bottom: 32px;
+  }
+
+  .text {
+    width: 471px;
+    margin-bottom: 64px;
+  }
+
+  .imgContainer {
+    width: 568px;
+    height: 530px;
+    border-radius: 30px;
+  }
+
+  .container {
+    height: 450px;
+    width: 360px;
+  }
+
+  .iMacContainer {
+    width: 360px;
+    height: 176px;
+  }
+
+  .girlImg {
+    width: 339px;
+    height: 339px;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1439px) {
+  .imgContainer {
+    width: 700px;
+    height: 530px;
+  }
+
+  .statisticContainer {
+    width: 700px;
+  }
+
+  .statisticList {
+    padding: 24px 65px;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+  }
+
+  .statisticItem {
+    gap: 16px;
+  }
+
+  .statisticTitle {
+    font-size: 24px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .contentContainer {
+    flex-direction: row;
+  }
+
+  .imgContainer {
+    width: 568px;
+    height: 530px;
+  }
+
+  .statisticContainer {
+    width: 1312px;
+  }
+
+  .statisticList {
+    padding: 40px 123px;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+  }
+
+  .statisticItem {
+    flex-direction: row;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .statisticTitle {
+    font-size: 28px;
+  }
+}

@@ -1,0 +1,119 @@
+.authNavContainer {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-left: 32px;
+}
+
+.btnLogIn {
+  background-color: transparent;
+  font-weight: 700;
+  line-height: 1.25;
+  min-width: 73px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.btnLogIn:hover {
+  color: var(--hover-color);
+  transition: color 200ms linear;
+}
+
+.iconLogIn {
+  stroke: var(--main-color);
+  fill: transparent;
+  width: 20px;
+  height: 20px;
+}
+
+.btnLogIn:hover .iconLogIn {
+  stroke: var(--hover-color);
+  transition: stroke 200ms linear;
+}
+
+.btnRegister {
+  color: var(--main-white-color);
+  background-color: var(--black-color);
+  border-radius: 12px;
+  width: 120px;
+  height: 48px;
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.btnRegister:hover {
+  background-color: var(--hover-color);
+  transition: background-color 200ms linear;
+}
+
+.btnAuthNav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  margin-left: 16px;
+}
+
+.iconThreeDots {
+  fill: var(--black-color);
+  height: 20px;
+}
+
+.btnAuthNav:hover .iconThreeDots {
+  fill: var(--hover-color);
+  transition: stroke 200ms linear;
+}
+
+.containerMenu {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btnsContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  background-color: rgb(255, 255, 255);
+  width: 200px;
+  padding: 24px;
+  gap: 24px;
+  border-radius: 5px;
+
+  position: absolute;
+  top: 70%;
+  right: 0;
+  box-shadow: 0 8px 16px rgba(18, 20, 23, 0.2);
+  z-index: 10;
+  margin: 24px;
+}
+
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+@media screen and (min-width: 768px) {
+  .authNavContainer {
+    display: flex;
+  }
+
+  .btnAuthNav {
+    display: none;
+  }
+
+  .btnRegister {
+    width: 166px;
+  }
+
+  .containerMenu {
+    display: none;
+  }
+}
