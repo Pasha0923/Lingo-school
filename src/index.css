@@ -1,0 +1,196 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+@import "modern-normalize/modern-normalize.css";
+
+:root {
+  --black-color: #121417;
+  --gray-color: #8a8a89;
+  --gray-background-color: #f8f8f8;
+  --main-white-color: #fff;
+  --statistic-text-color: rgba(18, 20, 23, 0.7);
+  --green-color: #38cd3e;
+
+  /* brown theme */
+  --main-color: #f0aa8d;
+  --light-color: #f4c8ba;
+  --hover-color: #ffa67f;
+  --dark-iMac-gradient: #ca5b38;
+  --light-iMac-gradient: #e17650;
+  --dark-apple-gradient: #efa98c;
+  --light-apple-gradient: #f3c8ba;
+  --background-image: url(./assets/border/border-brown-320.svg);
+}
+
+[data-theme="Yellow"] {
+  --main-color: #f4c550;
+  --light-color: #fbe9ba;
+  --hover-color: #f0b319;
+  --dark-iMac-gradient: #d08f38;
+  --light-iMac-gradient: #eeb055;
+  --dark-apple-gradient: #e7c885;
+  --light-apple-gradient: #fbe9ba;
+  --background-image: url(./assets/border/border-yellow-320.svg);
+}
+
+[data-theme="Green"] {
+  --main-color: #9fbaae;
+  --light-color: #cbded3;
+  --hover-color: #a2d7bf;
+  --dark-iMac-gradient: #183e49;
+  --light-iMac-gradient: #295761;
+  --dark-apple-gradient: #9eb9ad;
+  --light-apple-gradient: #cbded3;
+  --background-image: url(./assets/border/border-green-320.svg);
+}
+
+[data-theme="Blue"] {
+  --main-color: #9fb7ce;
+  --light-color: #bfd6ea;
+  --hover-color: #99c1e8;
+  --dark-iMac-gradient: #1f385a;
+  --light-iMac-gradient: #314b6e;
+  --dark-apple-gradient: #9fb6cd;
+  --light-apple-gradient: #bfd6ea;
+  --background-image: url(./assets/border/border-blue-320.svg);
+}
+
+[data-theme="Red"] {
+  --main-color: #e0a39a;
+  --light-color: #f2c0bd;
+  --hover-color: #fbab9e;
+  --dark-iMac-gradient: #982a27;
+  --light-iMac-gradient: #b03f3e;
+  --dark-apple-gradient: #dfa299;
+  --light-apple-gradient: #f1c0bd;
+  --background-image: url(./assets/border/border-red-320.svg);
+}
+
+[data-theme="Brown"] {
+  --main-color: #f0aa8d;
+  --light-color: #f4c8ba;
+  --hover-color: #ffa67f;
+  --dark-iMac-gradient: #ca5b38;
+  --light-iMac-gradient: #e17650;
+  --dark-apple-gradient: #efa98c;
+  --light-apple-gradient: #f3c8ba;
+  --background-image: url(./assets/border/border-brown-320.svg);
+}
+
+@media screen and (min-width: 768px) and (max-width: 1439px) {
+  :root {
+    /* brown theme */
+    --background-image: url(./assets/border/border-brown-768.svg);
+  }
+
+  [data-theme="Yellow"] {
+    --background-image: url(./assets/border/border-yellow-768.svg);
+  }
+
+  [data-theme="Green"] {
+    --background-image: url(./assets/border/border-green-768.svg);
+  }
+
+  [data-theme="Blue"] {
+    --background-image: url(./assets/border/border-blue-768.svg);
+  }
+
+  [data-theme="Red"] {
+    --background-image: url(./assets/border/border-red-768.svg);
+  }
+
+  [data-theme="Brown"] {
+    --background-image: url(./assets/border/border-brown-768.svg);
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  :root {
+    /* brown theme */
+    --background-image: url(./assets/border/border-brown-1440.svg);
+  }
+
+  [data-theme="Yellow"] {
+    --background-image: url(./assets/border/border-yellow-1440.svg);
+  }
+
+  [data-theme="Green"] {
+    --background-image: url(./assets/border/border-green-1440.svg);
+  }
+
+  [data-theme="Blue"] {
+    --background-image: url(./assets/border/border-blue-1440.svg);
+  }
+
+  [data-theme="Red"] {
+    --background-image: url(./assets/border/border-red-1440.svg);
+  }
+
+  [data-theme="Brown"] {
+    --background-image: url(./assets/border/border-brown-1440.svg);
+  }
+}
+
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+a {
+  text-decoration: none;
+  cursor: pointer;
+  color: currentColor;
+}
+
+body {
+  font-family: Roboto, sans-serif;
+  font-size: 16px;
+  line-height: 1.4;
+  font-weight: 400;
+
+  color: var(--black-color);
+  padding: 0;
+  margin: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+  padding: 0;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  margin: 0;
+  padding: 0;
+  border: none;
+  outline: none;
+}
+
+ul,
+ol,
+li {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+textarea {
+  font-family: inherit;
+}
+
+input {
+  padding: 0;
+  margin: 0;
+  outline: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
