@@ -1,6 +1,5 @@
 import { ThemeProvider } from "next-themes";
-
-// import Header from "../Header/Header";
+import Header from "../Header/Header";
 
 const Layout = ({ children }) => {
   return (
@@ -11,7 +10,7 @@ const Layout = ({ children }) => {
         themes={["Yellow", "Green", "Blue", "Red", "Brown"]}
         enableSystem
       >
-        {/* <Header /> */}
+        <Header />
         {children}
       </ThemeProvider>
     </>

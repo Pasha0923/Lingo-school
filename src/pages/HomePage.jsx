@@ -1,7 +1,7 @@
 import HomeContent from "../components/HomeContent/HomeContent";
 import DocumentTitle from "../components/DocumentTitle/DocumentTitle";
 
-const Home = () => {
+const HomePage = () => {
   return (
     <>
       <DocumentTitle>Learn Lingo Home Page</DocumentTitle>
@@ -10,4 +10,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default HomePage;

@@ -1,7 +1,7 @@
 import FormLoginIn from "../FormLogIn/FormLogIn";
 import ModalWrapper from "../ModalWrapper/ModalWrapper";
 
-const ModalLoginIn = ({ onCloseModal, isOpen }) => {
+const ModalLogin = ({ onCloseModal, isOpen }) => {
   return (
     <ModalWrapper modalIsOpen={isOpen} onCloseModal={onCloseModal}>
       <FormLoginIn onCloseModal={onCloseModal} />
@@ -9,4 +9,4 @@ const ModalLoginIn = ({ onCloseModal, isOpen }) => {
   );
 };
 
-export default ModalLoginIn;
+export default ModalLogin;

@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
 
-import ModalLoginIn from "../ModalLoginIn/ModalLoginIn";
 import ModalRegistration from "../ModalRegistration/ModalRegistration";
 import scrollController from "../../services/noScroll";
 import { closeByEsc } from "../../services/functions";
 import css from "./AuthNav.module.css";
 import sprite from "../../assets/sprite.svg";
+import ModalLogin from "../ModalLogin/ModalLogin";
 
 const AuthNav = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -55,7 +55,7 @@ const AuthNav = () => {
       )}
 
       {isLogInOpen && (
-        <ModalLoginIn onCloseModal={closeLogInModal} isOpen={isLogInOpen} />
+        <ModalLogin onCloseModal={closeLogInModal} isOpen={isLogInOpen} />
       )}
 
       <div className={css.authNavContainer}>

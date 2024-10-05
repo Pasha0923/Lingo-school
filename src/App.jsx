@@ -6,8 +6,9 @@ import { useEffect } from "react";
 // import { selectAuthRefreshing } from "./redux/auth/selectors";
 import Loader from "./components/Loader/Loader";
 // import { refreshUser } from "./redux/auth/operations";
-// import Layout from "./components/Layout/Layout";
+import Layout from "./components/Layout/Layout";
 import Container from "./components/Container/Container";
+
 // import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 
 const HomePage = lazy(() => import("./pages/HomePage"));
@@ -48,24 +49,27 @@ function App() {
 
   return (
     <Container>
+      {/* <Logo />
+      <Navigation />
+      <ThemeChanger /> */}
       <Suspense fallback={<Loader />}>
-        {/* <Layout> */}
-        <main>
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/teachers" element={<TeachersPage />} />
-            <Route
-              path="/favorites"
-              element={
-                // <PrivateRoute>
-                <FavoritesPage />
-                // </PrivateRoute>
-              }
-            />
-            <Route path="*" element={<NotFoundPage replace />} />
-          </Routes>
-        </main>
-        {/* </Layout> */}
+        <Layout>
+          <main>
+            <Routes>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/teachers" element={<TeachersPage />} />
+              <Route
+                path="/favorites"
+                element={
+                  // <PrivateRoute>
+                  <FavoritesPage />
+                  // </PrivateRoute>
+                }
+              />
+              <Route path="*" element={<NotFoundPage replace />} />
+            </Routes>
+          </main>
+        </Layout>
       </Suspense>
     </Container>
   );
