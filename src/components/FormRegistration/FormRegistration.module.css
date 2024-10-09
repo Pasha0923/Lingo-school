@@ -1,0 +1,121 @@
+.container {
+  width: 288px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  font-size: 28px;
+  font-weight: 500;
+  line-height: 1.2;
+  margin-bottom: 20px;
+}
+
+.formContainer {
+  margin: 40px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 18px;
+}
+
+.input {
+  padding: 16px 18px;
+  width: 100%;
+  height: 54px;
+  border-radius: 12px;
+  border: 1px solid rgba(18, 20, 23, 0.1);
+  outline: none;
+  color: var(--black-color);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+.input::placeholder {
+  color: var(--black-color);
+}
+
+.input:hover,
+.input:focus {
+  border: 1px solid rgba(18, 20, 23, 0.2);
+  transition: border 200ms linear;
+}
+
+/* Приховує іконку ока у веб-кит браузерах (Chrome, Edge) */
+input[type="password"]::-ms-reveal,
+input[type="password"]::-ms-clear {
+  display: none;
+}
+
+.registrBtn {
+  width: 100%;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  background-color: var(--main-color);
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.6;
+}
+
+.logInBtn:hover {
+  background-color: var(--hover-color);
+  transition: background-color 200ms linear;
+}
+
+.label {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+}
+
+.errorContainer {
+  position: absolute;
+  bottom: -32px;
+  background-color: var(--gray-background-color);
+  padding: 8px 16px;
+  border-radius: 8px;
+  z-index: 1;
+}
+
+.errorMessage {
+  color: red;
+}
+
+.eyeBtn {
+  background-color: transparent;
+  position: absolute;
+  right: 0;
+  margin-right: 18px;
+}
+
+.iconEyePassword {
+  stroke: var(--black-color);
+}
+
+@media screen and (min-width: 768px) and (max-width: 1439px) {
+  .container {
+    width: 400px;
+  }
+
+  .title {
+    font-size: 32px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .container {
+    width: 438px;
+  }
+
+  .title {
+    font-size: 40px;
+  }
+}

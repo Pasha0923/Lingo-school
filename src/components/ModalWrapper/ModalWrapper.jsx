@@ -29,7 +29,9 @@ const ModalWrapper = ({
   return (
     <Modal
       isOpen={modalIsOpen}
+      //   isOpen={modalIsOpen} // показывать при клике модальное окно
       onRequestClose={onCloseModal}
+      //   onRequestClose={onCloseModal} // клик на backdrop и Escape
       style={customStyles}
       contentLabel="Modal Details"
     >

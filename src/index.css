@@ -18,6 +18,7 @@
   --dark-apple-gradient: #efa98c;
   --light-apple-gradient: #f3c8ba;
   --background-image: url(./assets/border/border-brown-320.svg);
+  --secondary-green-CBDED3: #cbded3;
 }
 
 [data-theme="Yellow"] {
@@ -139,7 +140,13 @@ a {
   cursor: pointer;
   color: currentColor;
 }
-
+a {
+  display: inline-block;
+}
+a.active {
+  color: var(--primary-green-9FBAAE);
+  border-bottom: 2px solid var(--primary-green-9FBAAE);
+}
 body {
   font-family: Roboto, sans-serif;
   font-size: 16px;

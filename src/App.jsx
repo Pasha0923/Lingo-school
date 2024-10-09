@@ -12,7 +12,7 @@ import Container from "./components/Container/Container";
 // import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 
 const HomePage = lazy(() => import("./pages/HomePage"));
-const TeachersPage = lazy(() => import("./pages/TeachersPage"));
+const TeachersPage = lazy(() => import("./pages/TheachersPage"));
 const FavoritesPage = lazy(() => import("./pages/FavoritesPage"));
 const NotFoundPage = lazy(() => import("./pages/NotFoundPage"));
 
