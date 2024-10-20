@@ -1,9 +1,9 @@
 import clsx from "clsx";
 import { NavLink } from "react-router-dom";
 import { useState, useEffect } from "react";
-// import { useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
-// import { selectAuthIsLoggedIn } from "../../redux/auth/selectors";
+import { selectAuthIsLoggedIn } from "../../redux/auth/selectors";
 import scrollController from "../../services/noScroll";
 import { closeByEsc } from "../../services/functions";
 import sprite from "../../assets/sprite.svg";
@@ -16,7 +16,7 @@ const Navigation = () => {
 
   const [isOpen, setIsOpen] = useState(false);
 
-  //   const isLoggedIn = useSelector(selectAuthIsLoggedIn);
+  const isLoggedIn = useSelector(selectAuthIsLoggedIn);
 
   function openMenu() {
     setIsOpen(true);
@@ -41,11 +41,11 @@ const Navigation = () => {
         <NavLink to="/teachers" className={buildLinkClass}>
           Teachers
         </NavLink>
-        {/* {isLoggedIn && (
+        {isLoggedIn && (
           <NavLink to="/favorites" className={buildLinkClass}>
             Favorites
-          </NavLink> */}
-        {/* )} */}
+          </NavLink>
+        )}
       </nav>
       <div className={css.containerMenu}>
         <button onClick={openMenu} type="button" className={css.btnMenu}>
@@ -72,17 +72,17 @@ const Navigation = () => {
                 Teachers
               </NavLink>
             </div>
-            {/* {isLoggedIn && ( */}
-            <div className={css.menuItemContainer}>
-              <NavLink
-                to="/favorites"
-                className={buildLinkClass}
-                onClick={closeMenu}
-              >
-                Favorites
-              </NavLink>
-            </div>
-            {/* )} */}
+            {isLoggedIn && (
+              <div className={css.menuItemContainer}>
+                <NavLink
+                  to="/favorites"
+                  className={buildLinkClass}
+                  onClick={closeMenu}
+                >
+                  Favorites
+                </NavLink>
+              </div>
+            )}
           </nav>
         )}
       </div>

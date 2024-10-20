@@ -13,7 +13,7 @@ import {
 import storage from "redux-persist/lib/storage";
 
 import { teachersApi } from "../services/apiTeachers";
-import { userReducer } from "./auth/slice";
+import { authReducer } from "./auth/slice";
 import { favoriteReducer } from "./favorites/slice";
 const authConfig = {
   key: "user",
@@ -29,7 +29,7 @@ const favoritesConfig = {
 export const store = configureStore({
   reducer: {
     [teachersApi.reducerPath]: teachersApi.reducer,
-    user: persistReducer(authConfig, userReducer),
+    auth: persistReducer(authConfig, authReducer),
     favorite: persistReducer(favoritesConfig, favoriteReducer),
   },
 

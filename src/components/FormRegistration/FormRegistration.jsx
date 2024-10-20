@@ -7,6 +7,8 @@ import { useState } from "react";
 // import { registerUser } from "../../redux/auth/operations";
 import sprite from "../../assets/sprite.svg";
 import css from "./FormRegistration.module.css";
+import { registerUser } from "../../redux/auth/operations";
+import { useDispatch } from "react-redux";
 
 const schema = yup
   .object({
@@ -37,12 +39,12 @@ const FormRegistration = ({ onCloseModal }) => {
     resolver: yupResolver(schema),
   });
 
-  //   const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   const [isVisible, setIsVisible] = useState(false);
 
-  const onSubmit = () => {
-    // dispatch(registerUser(data));
+  const onSubmit = (data) => {
+    dispatch(registerUser(data));
     reset();
     onCloseModal();
   };

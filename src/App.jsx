@@ -1,13 +1,15 @@
 import { Suspense, lazy } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
 import { useEffect } from "react";
-// import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
-// import { selectAuthRefreshing } from "./redux/auth/selectors";
+import { selectAuthRefreshing } from "./redux/auth/selectors";
 import Loader from "./components/Loader/Loader";
-// import { refreshUser } from "./redux/auth/operations";
+import { refreshUser } from "./redux/auth/operations";
 import Layout from "./components/Layout/Layout";
 import Container from "./components/Container/Container";
+import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
+import { ToastContainer } from "react-toastify";
 
 // import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 
@@ -18,9 +20,9 @@ const NotFoundPage = lazy(() => import("./pages/NotFoundPage"));
 
 function App() {
   const location = useLocation();
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-  // const isRefreshing = useSelector(selectAuthRefreshing);
+  const isRefreshing = useSelector(selectAuthRefreshing);
 
   useEffect(() => {
     const body = document.body;
@@ -39,16 +41,18 @@ function App() {
     };
   }, [location.pathname]);
 
-  // useEffect(() => {
-  //   dispatch(refreshUser());
-  // }, [dispatch]);
+  useEffect(() => {
+    dispatch(refreshUser());
+  }, [dispatch]);
 
-  // if (isRefreshing) {
-  //   return <Loader />;
-  // }
+  if (isRefreshing) {
+    return <Loader />;
+  }
 
   return (
     <Container>
+      |
+      <ToastContainer /> {/* Добавляем ToastContainer здесь */}
       {/* <Logo />
       <Navigation />
       <ThemeChanger /> */}
@@ -61,9 +65,9 @@ function App() {
               <Route
                 path="/favorites"
                 element={
-                  // <PrivateRoute>
-                  <FavoritesPage />
-                  // </PrivateRoute>
+                  <PrivateRoute>
+                    <FavoritesPage />
+                  </PrivateRoute>
                 }
               />
               <Route path="*" element={<NotFoundPage replace />} />

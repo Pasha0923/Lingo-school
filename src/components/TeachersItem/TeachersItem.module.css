@@ -19,17 +19,21 @@
 }
 .heartMob {
   cursor: pointer;
+  fill: transparent;
+  stroke: var(--main-color);
 }
 .heartMob:hover {
   filter: invert(74%) sepia(13%) saturate(426%) hue-rotate(102deg)
     brightness(89%) contrast(83%);
+  stroke: var(--main-color);
+  fill: transparent;
 }
 .image {
   width: 96px;
   height: 96px;
   border-radius: 50%;
   padding: 12px;
-  border: 3px solid var(--secondary-green-CBDED3);
+  border: 3px solid var(--light-color);
   margin-bottom: 4px;
 }
 .list {
@@ -52,13 +56,16 @@
 .heart:hover {
   filter: invert(74%) sepia(13%) saturate(426%) hue-rotate(102deg)
     brightness(89%) contrast(83%);
+  stroke: var(--main-color);
+  fill: transparent;
 }
 .favorite {
   filter: invert(74%) sepia(13%) saturate(426%) hue-rotate(102deg)
     brightness(89%) contrast(83%);
+  stroke: var(--main-color);
 }
 .price {
-  color: var(--primary-green-9FBAAE);
+  color: var(--green-color);
 }
 .languageWrapper {
   display: flex;
@@ -98,13 +105,35 @@
   transition-timing-function: var(--my-transition-timing-function);
   transition-delay: var(--my-transition-delay);
 }
-.button:hover {
+/* .button:hover {
   color: var(--primary-green-9FBAAE);
-}
+} */
 .btnList {
   display: flex;
   flex-wrap: wrap;
   gap: 4px;
+}
+.heartBtn {
+  background-color: transparent;
+  /* position: absolute; */
+  right: 0;
+  top: 0;
+}
+.iconHeart {
+  fill: transparent;
+  stroke: var(--black-color);
+}
+.heartBtn:hover .iconHeart {
+  stroke: var(--main-color);
+  transition: stroke 200ms linear;
+}
+.heartBtn:hover .favoritHeatIcon {
+  fill: var(--hover-color);
+  transition: fill 200ms linear;
+}
+.favoritHeatIcon {
+  fill: var(--main-color);
+  stroke: transparent;
 }
 .levelItem {
   font-size: 14px;

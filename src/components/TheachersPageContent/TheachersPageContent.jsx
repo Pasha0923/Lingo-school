@@ -69,7 +69,7 @@ const TheachersPageContent = () => {
               <LevelSelector filterByLevel={filterByLevel} />
               <CostSelector filterByPrice={filterByPrice} />
             </div> */}
-        <TeachersList data={dataToShow} />
+        <TeachersList data={dataToShow} active={false} />
         {dataToShow.length === visibleItemsCount && (
           <button className={css.button} type="button" onClick={onloadMore}>
             {isLoadingMore ? <LoaderSpinner /> : "Load more"}

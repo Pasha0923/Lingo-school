@@ -1,54 +1,102 @@
 import { useState } from "react";
 import css from "./TeachersItem.module.css";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
+// import { Toaster } from "react-hot-toast";
 // import ReadMore from "../ReadMore/ReadMore";
 // import Modal from "../Modal/Modal";
 // import BookingModal from "../BookingModal/BookingModal";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 // import { addFavorite, deleteFavorite } from "../../redux/favoriteSlice";
 // import { useAuth, useFavorite } from "../../hooks/useAuth";
-import { toast } from "react-toastify";
+
 import ModalWrapper from "../ModalWrapper/ModalWrapper";
 import { addFavorite, deleteFavorite } from "../../redux/favorites/slice";
-import { useAuth, useFavorite } from "../hooks/useAuth";
+// import { useAuth } from "../hooks/useAuth";
 import BookingModal from "../BookingModal/BookingModal";
 import bookOpen from "../../assets/book-open.svg";
-import Heartsvg from "../../assets/heart.svg";
+// import Heartsvg from "../../assets/heart.svg";
 import Starsvg from "../../assets/star.svg";
-const TeachersItem = ({ item }) => {
-  const { isAuth } = useAuth();
+import ReadMore from "../ReadMore/ReadMore";
+import sprite from "../../assets/sprite.svg";
+// import { useEffect } from "react";
+import { selectAuthIsLoggedIn } from "../../redux/auth/selectors";
+import { selectFavoriteTeachers } from "../../redux/favorites/selectors";
+import { Toaster } from "react-hot-toast";
+// toast.configure();
+const TeachersItem = ({ active, item }) => {
+  // const { isAuth } = useAuth();
 
   const dispatch = useDispatch();
-  //   const [expendedContent, setExpendedContent] = useState(false);
+  const [isActive, setIsActive] = useState(active);
+  const [expendedContent, setExpendedContent] = useState(false);
   const [isVisibleModal, setIsVisibleModal] = useState(false);
+  const isLoggedIn = useSelector(selectAuthIsLoggedIn);
+  const favorites = useSelector(selectFavoriteTeachers);
+  // const { favorite } = useFavorite();
 
-  const { favorite } = useFavorite();
+  const inFavorite = favorites.some((fav) => fav.id === item.id);
 
-  const inFavorite = favorite.some((fav) => fav.id === item.id);
-
-  const addToFavorite = () => {
-    if (inFavorite === true && isAuth === true) {
-      dispatch(deleteFavorite(item.id));
-      toast.success("Deleted successfully");
-    }
-    if (inFavorite === false && isAuth === true) {
-      dispatch(addFavorite(item));
-      toast.success("Add successfully");
-    }
-    if (isAuth === false) {
-      toast.warning("Only for registered users!");
-    }
-  };
+  // const addToFavorite = () => {
+  //   if (!isAuth) {
+  //     toast.warning("Only for registered users!");
+  //     return;
+  //   }
+  //   if (inFavorite === true && isAuth === true) {
+  //     dispatch(deleteFavorite(item.id));
+  //     toast.success("Deleted successfully");
+  //   }
+  //   if (inFavorite === false && isAuth === true) {
+  //     dispatch(addFavorite(item));
+  //     toast.success("Add successfully");
+  //   }
+  // };
 
   const onClose = () => {
     setIsVisibleModal(false);
   };
+  // useEffect(() => {
+  //   if (isLoggedIn) {
+  //     setIsActive(inFavorite);
+  //   } else {
+  //     setIsActive(false);
+  //   }
+  // }, [inFavorite, isLoggedIn]);
+
+  function handleClick(event) {
+    event.preventDefault(); // Предотвращаем перезагрузку страницы
+    if (!isLoggedIn) {
+      toast.error("Please log in", {
+        style: {
+          backgroundColor: "var(--main-color)",
+          color: "#fff",
+          padding: "16px",
+          fontSize: "18px",
+        },
+      });
+      return;
+    }
+    if (isLoggedIn) {
+      if (inFavorite) {
+        dispatch(deleteFavorite(item.id));
+        toast.success("Deleted successfully");
+        setIsActive(false);
+      } else {
+        dispatch(addFavorite(item));
+        toast.success("Add successfully");
+        setIsActive(true);
+      }
+    }
+  }
+
   return (
     <>
       <div className={css.teacherItem}>
         <div className={css.imgWrapper}>
           <img className={css.image} src={item.avatar_url} alt={item.name} />
-          <img
-            onClick={addToFavorite}
+          {/* <img
+            onClick={handleClick}
             className={
               inFavorite && isAuth
                 ? `${css.heartMob} ${css.favorite}`
@@ -57,7 +105,7 @@ const TeachersItem = ({ item }) => {
             src={Heartsvg}
             alt="heart"
             loading="lazy"
-          />
+          /> */}
         </div>
         <div>
           <div className={css.textWrapper}>
@@ -89,7 +137,7 @@ const TeachersItem = ({ item }) => {
                 <span className={css.price}>{item.price_per_hour}$</span>
               </li>
             </ul>
-            <img
+            {/* <img
               onClick={addToFavorite}
               className={
                 inFavorite && isAuth
@@ -99,7 +147,17 @@ const TeachersItem = ({ item }) => {
               src={Heartsvg}
               alt="heart"
               loading="lazy"
-            />
+            /> */}
+            <button className={css.heartBtn} onClick={handleClick}>
+              <svg
+                className={isActive ? css.favoritHeatIcon : css.iconHeart}
+                width="26"
+                height="26"
+              >
+                <use href={`${sprite}#icon-heart`}></use>
+              </svg>
+            </button>
+            <Toaster />
           </div>
           <h2 className={css.name}>
             {item.name} {item.surname}
@@ -125,8 +183,8 @@ const TeachersItem = ({ item }) => {
               <span className={css.languageItem}>{item.conditions}</span>
             </div>
           </div>
-
-          {/* {expendedContent ? (
+          {/* Readmore + уровни A1 , A2, B1, B2 по фильтрам */}
+          {expendedContent ? (
             <ReadMore item={item} setIsVisibleModal={setIsVisibleModal} />
           ) : (
             <>
@@ -144,9 +202,11 @@ const TeachersItem = ({ item }) => {
                 ))}
               </ul>
             </>
-          )} */}
+          )}
         </div>
       </div>
+      {/* <ToastContainer /> */}
+      {/* Добавьте этот компонент для отображения уведомлений */}
       {isVisibleModal && (
         <ModalWrapper onClose={onClose}>
           <BookingModal item={item} onClose={onClose} />

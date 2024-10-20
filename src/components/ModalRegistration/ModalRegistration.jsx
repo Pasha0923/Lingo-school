@@ -4,7 +4,7 @@ import FormRegistration from "../FormRegistration/FormRegistration";
 const ModalRegistration = ({ onCloseModal, isOpen }) => {
   return (
     <ModalWrapper modalIsOpen={isOpen} onCloseModal={onCloseModal}>
-      <FormRegistration />
+      <FormRegistration onCloseModal={onCloseModal} />
     </ModalWrapper>
   );
 };
