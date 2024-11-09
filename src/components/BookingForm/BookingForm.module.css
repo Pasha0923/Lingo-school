@@ -1,0 +1,18 @@
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 40px;
+}
+.radioItem {
+  display: flex;
+}
+
+.label {
+  display: flex;
+  font-size: 16px;
+  line-height: 22px;
+  position: relative;
+  padding-left: 8px;
+  cursor: pointer;
+}

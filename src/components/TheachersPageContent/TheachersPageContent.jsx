@@ -10,6 +10,7 @@ import { useGetAllTeachersQuery } from "../../services/apiTeachers";
 
 const TheachersPageContent = () => {
   const { data, isLoading } = useGetAllTeachersQuery();
+  // console.log(" data: ", data);
   const [dataToShow, setDataToShow] = useState([]);
   const [visibleItemsCount, setVisibleItemsCount] = useState(4);
   const [filteredData, setFilteredData] = useState([]);

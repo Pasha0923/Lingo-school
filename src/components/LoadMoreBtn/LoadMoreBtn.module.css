@@ -1,0 +1,16 @@
+.button {
+  height: 60px;
+  color: var(--black-color);
+  background-color: var(--main-color);
+  border-radius: 12px;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.6;
+  padding: 16px 48px;
+}
+
+.button:hover,
+.button:focus {
+  background-color: var(--hover-color);
+  transition: background-color 200ms linear;
+}

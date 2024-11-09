@@ -1,0 +1,154 @@
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+.wrapper {
+  display: flex;
+  gap: 12px;
+}
+.image {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background-color: var(--secondary-green-CBDED3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 500;
+}
+.textWrapper {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 16px;
+  gap: 2px;
+}
+.name {
+  font-size: 16px;
+  line-height: 24px;
+  color: var(--primary-grey-8A8A89);
+}
+.ratingWrapper {
+  display: flex;
+  gap: 8px;
+}
+.rating {
+  font-size: 14px;
+  line-height: 18px;
+  font-weight: 500;
+}
+.comments {
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 500;
+}
+.button {
+  font-size: 18px;
+  line-height: 28px;
+  font-weight: 500;
+  padding: 16px 48px;
+  border-radius: 12px;
+  border: none;
+  background-color: var(--secondary-green-CBDED3);
+  transition: all;
+  transition-duration: var(--my-transition-duration);
+  transition-timing-function: var(--my-transition-timing-function);
+  transition-delay: var(--my-transition-delay);
+}
+.button:hover {
+  background-color: var(--primary-green-9FBAAE);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+}
+.btnList {
+  margin-bottom: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+.levelItem {
+  font-size: 14px;
+  line-height: 16px;
+  font-weight: 500;
+  padding: 8px 12px;
+  border-radius: 35px;
+  border: 1px solid rgba(18, 20, 23, 0.1);
+  background-color: transparent;
+  cursor: pointer;
+  transition: all;
+  transition-duration: var(--my-transition-duration);
+  transition-timing-function: var(--my-transition-timing-function);
+  transition-delay: var(--my-transition-delay);
+}
+.levelItem:hover {
+  background-color: var(--primary-green-9FBAAE);
+}
+@media (min-width: 768px) {
+}
+@media (min-width: 1440px) {
+  .list {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    margin-bottom: 32px;
+  }
+  .wrapper {
+    display: flex;
+    gap: 12px;
+  }
+  .image {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 500;
+  }
+  .textWrapper {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 16px;
+    gap: 2px;
+  }
+  .name {
+    font-size: 16px;
+    line-height: 24px;
+  }
+  .ratingWrapper {
+    display: flex;
+    gap: 8px;
+  }
+  .rating {
+    font-size: 14px;
+    line-height: 18px;
+    font-weight: 500;
+  }
+  .comments {
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 500;
+  }
+  .button {
+    font-size: 18px;
+    line-height: 28px;
+    font-weight: 500;
+    padding: 16px 48px;
+  }
+
+  .btnList {
+    margin-bottom: 32px;
+    display: flex;
+    gap: 8px;
+  }
+  .levelItem {
+    font-size: 14px;
+    line-height: 16px;
+    font-weight: 500;
+    padding: 8px 12px;
+  }
+}

@@ -1,0 +1,141 @@
+.modalTitle {
+  color: var(--main);
+  text-align: center;
+  font-family: Poppins;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 24px;
+  letter-spacing: -0.2px;
+}
+
+.modalText {
+  color: #323f47;
+  text-align: center;
+  font-family: Poppins;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 18px;
+  letter-spacing: -0.14px;
+}
+
+.modalBtnWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  justify-content: center;
+}
+
+.modalBtn {
+  width: 304px;
+  height: 46px;
+  color: #323f47;
+  text-align: center;
+  font-family: Poppins;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 18px;
+  letter-spacing: -0.14px;
+  display: flex;
+  padding: 14px 126px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border-radius: 30px;
+  background-color: transparent;
+  border: none;
+}
+
+.modalBtn:hover {
+  background-color: #ccb7b7;
+}
+
+.modalBtnCancel {
+  display: flex;
+  width: 304px;
+  height: 46px;
+  padding: 14px 126px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  color: #323f47;
+  text-align: center;
+  font-family: Poppins;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 18px;
+  letter-spacing: -0.14px;
+  border-radius: 30px;
+  background: transparent;
+  border: none;
+}
+
+.modalBtnCancel:hover {
+  background-color: #ccb7b7; /* Цвет при наведении для Cancel */
+  color: #0d2a2e;
+}
+
+.modalContentWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 344px;
+  padding: 40px 14px;
+  border-radius: 15px;
+  box-shadow: 0px 4px 50px 0px rgba(0, 0, 0, 0.1);
+  background-color: var(--main-white);
+}
+
+@media screen and (min-width: 768px) {
+  .modalContentWrapper {
+    width: 516px;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0px 4px 50px 0px rgba(0, 0, 0, 0.1);
+  }
+
+  .modalTitle {
+    font-size: 28px;
+    line-height: 32px;
+    letter-spacing: -0.28px;
+  }
+
+  .modalText {
+    font-size: 18px;
+    line-height: 24px;
+    letter-spacing: -0.18px;
+  }
+
+  .modalBtnWrapper {
+    flex-direction: row;
+    gap: 10px;
+  }
+
+  .modalButton {
+    width: 170px;
+    height: 60px;
+    padding: 16px 67px;
+    font-size: 16px;
+  }
+
+  .modalBtn {
+    width: 173px;
+    height: 60px;
+    padding: 18px 57px;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: -0.16px;
+  }
+
+  .modalBtnCancel {
+    width: 176px;
+    height: 60px;
+    padding: 18px 59px;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: -0.16px;
+  }
+}

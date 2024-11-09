@@ -8,18 +8,25 @@ import { closeByEsc } from "../../services/functions";
 import css from "./UserMenu.module.css";
 import sprite from "../../assets/sprite.svg";
 import { logoutUser } from "../../redux/auth/operations";
+import ModalLogout from "../ModalLogout/ModalLogout";
 
 const UserMenu = () => {
   const dispatch = useDispatch();
   const userData = useSelector(selectAuthUser);
-
+  const [isLogInOpen, setIsLogInOpen] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-
+  function openLogInModal() {
+    setIsLogInOpen(true);
+    scrollController.disabledScroll();
+  }
   function openMenu() {
     setIsOpen(true);
     scrollController.disabledScroll();
   }
-
+  function closeLogInModal() {
+    setIsLogInOpen(false);
+    scrollController.enabledScroll();
+  }
   function closeMenu() {
     setIsOpen(false);
     scrollController.enabledScroll();
@@ -39,11 +46,13 @@ const UserMenu = () => {
         <p className={css.text}>
           Hello,&nbsp;<span className={css.name}>{userData.name}!</span>
         </p>
-        <button className={css.button} onClick={handleLogout} type="button">
+        <button className={css.button} onClick={openLogInModal} type="button">
           Logout
         </button>
       </div>
-
+      {isLogInOpen && (
+        <ModalLogout onCloseModal={closeLogInModal} isOpen={isLogInOpen} />
+      )}
       <div className={css.containerMob}>
         <button className={css.buttonMob} onClick={openMenu} type="button">
           <svg className={css.iconLogOut} width="20" height="20">

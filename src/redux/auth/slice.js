@@ -33,7 +33,7 @@
 // });
 
 // export const { setUser, removeUser } = authSlice.actions;
-// export const userReducer = authSlice.reducer;
+// export const authReducer = authSlice.reducer;
 import { createSlice } from "@reduxjs/toolkit";
 import { registerUser, loginUser, logoutUser, refreshUser } from "./operations";
 

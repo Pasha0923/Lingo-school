@@ -1,4 +1,3 @@
-import { useState } from "react";
 import css from "./TeachersItem.module.css";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -24,8 +23,13 @@ import sprite from "../../assets/sprite.svg";
 import { selectAuthIsLoggedIn } from "../../redux/auth/selectors";
 import { selectFavoriteTeachers } from "../../redux/favorites/selectors";
 import { Toaster } from "react-hot-toast";
+import { useState } from "react";
+// import { useFavorite } from "../hooks/useAuth";
+// import { useAuth } from "../../hooks/useAuth";
+// import defaultImage from "../../assets/avatar.webp"; // Импортируем изображение по умолчанию
 // toast.configure();
 const TeachersItem = ({ active, item }) => {
+  // console.log("item: ", item);
   // const { isAuth } = useAuth();
 
   const dispatch = useDispatch();
@@ -33,41 +37,29 @@ const TeachersItem = ({ active, item }) => {
   const [expendedContent, setExpendedContent] = useState(false);
   const [isVisibleModal, setIsVisibleModal] = useState(false);
   const isLoggedIn = useSelector(selectAuthIsLoggedIn);
-  const favorites = useSelector(selectFavoriteTeachers);
+  const favorite = useSelector(selectFavoriteTeachers);
   // const { favorite } = useFavorite();
 
-  const inFavorite = favorites.some((fav) => fav.id === item.id);
-
-  // const addToFavorite = () => {
-  //   if (!isAuth) {
-  //     toast.warning("Only for registered users!");
-  //     return;
-  //   }
-  //   if (inFavorite === true && isAuth === true) {
-  //     dispatch(deleteFavorite(item.id));
-  //     toast.success("Deleted successfully");
-  //   }
-  //   if (inFavorite === false && isAuth === true) {
-  //     dispatch(addFavorite(item));
-  //     toast.success("Add successfully");
-  //   }
-  // };
+  const inFavorite = favorite.some((fav) => fav?.id === item.id);
 
   const onClose = () => {
     setIsVisibleModal(false);
   };
+  // if (!item || !item.id) {
+  //   console.error("Invalid item data:", item);
+  //   return null;
+  // }
   // useEffect(() => {
   //   if (isLoggedIn) {
-  //     setIsActive(inFavorite);
+  //     setIsActive(favorite.some((item) => item.id === id));
   //   } else {
   //     setIsActive(false);
   //   }
-  // }, [inFavorite, isLoggedIn]);
-
+  // }, [favorite, id, isLoggedIn]);
   function handleClick(event) {
     event.preventDefault(); // Предотвращаем перезагрузку страницы
     if (!isLoggedIn) {
-      toast.error("Please log in", {
+      toast.warning("Please log in", {
         style: {
           backgroundColor: "var(--main-color)",
           color: "#fff",
@@ -78,7 +70,7 @@ const TeachersItem = ({ active, item }) => {
       return;
     }
     if (isLoggedIn) {
-      if (inFavorite) {
+      if (inFavorite === true) {
         dispatch(deleteFavorite(item.id));
         toast.success("Deleted successfully");
         setIsActive(false);
@@ -89,23 +81,23 @@ const TeachersItem = ({ active, item }) => {
       }
     }
   }
+  // console.log(item); // Проверьте, что avatar_url присутствует
+  // console.log(item.avatar_url);
+  console.log(item.reviews);
+  // if (!item || !item.id || !item.avatar_url || !item.reviews) {
+  //   console.error("Invalid item data:", item);
+  //   return null; // Не рендерим компонент, если отсутствуют нужные данные
+  // }
 
+  const modifiedReviews = item.reviews.map((review) => ({
+    ...review,
+    avatar_url: review.avatar_url, // Добавьте сюда ваше значение по умолчанию
+  }));
   return (
     <>
       <div className={css.teacherItem}>
         <div className={css.imgWrapper}>
           <img className={css.image} src={item.avatar_url} alt={item.name} />
-          {/* <img
-            onClick={handleClick}
-            className={
-              inFavorite && isAuth
-                ? `${css.heartMob} ${css.favorite}`
-                : css.heartMob
-            }
-            src={Heartsvg}
-            alt="heart"
-            loading="lazy"
-          /> */}
         </div>
         <div>
           <div className={css.textWrapper}>
@@ -185,7 +177,13 @@ const TeachersItem = ({ active, item }) => {
           </div>
           {/* Readmore + уровни A1 , A2, B1, B2 по фильтрам */}
           {expendedContent ? (
-            <ReadMore item={item} setIsVisibleModal={setIsVisibleModal} />
+            <ReadMore
+              item={{
+                ...item,
+                reviews: modifiedReviews,
+              }}
+              setIsVisibleModal={setIsVisibleModal}
+            />
           ) : (
             <>
               <button
@@ -205,10 +203,9 @@ const TeachersItem = ({ active, item }) => {
           )}
         </div>
       </div>
-      {/* <ToastContainer /> */}
-      {/* Добавьте этот компонент для отображения уведомлений */}
+
       {isVisibleModal && (
-        <ModalWrapper onClose={onClose}>
+        <ModalWrapper modalIsOpen={isVisibleModal} onCloseModal={onClose}>
           <BookingModal item={item} onClose={onClose} />
         </ModalWrapper>
       )}
