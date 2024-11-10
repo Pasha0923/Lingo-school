@@ -56,6 +56,7 @@ import starIcon from "../../assets/star.svg";
 import defaultImage from "../../assets/avatar.webp";
 
 const ReadMore = ({ item, setIsVisibleModal }) => {
+  console.log(" item: ", item);
   const openBookingModal = () => {
     console.log("openBookingModal: ", openBookingModal);
     setIsVisibleModal(true);

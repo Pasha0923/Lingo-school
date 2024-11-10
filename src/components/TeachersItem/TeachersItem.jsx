@@ -15,31 +15,28 @@ import { addFavorite, deleteFavorite } from "../../redux/favorites/slice";
 // import { useAuth } from "../hooks/useAuth";
 import BookingModal from "../BookingModal/BookingModal";
 import bookOpen from "../../assets/book-open.svg";
-// import Heartsvg from "../../assets/heart.svg";
+import Heartsvg from "../../assets/heart.svg";
 import Starsvg from "../../assets/star.svg";
 import ReadMore from "../ReadMore/ReadMore";
 import sprite from "../../assets/sprite.svg";
-// import { useEffect } from "react";
-import { selectAuthIsLoggedIn } from "../../redux/auth/selectors";
+// import { selectAuthIsLoggedIn } from "../../redux/auth/selectors";
 import { selectFavoriteTeachers } from "../../redux/favorites/selectors";
 import { Toaster } from "react-hot-toast";
 import { useState } from "react";
-// import { useFavorite } from "../hooks/useAuth";
-// import { useAuth } from "../../hooks/useAuth";
+
 // import defaultImage from "../../assets/avatar.webp"; // Импортируем изображение по умолчанию
 // toast.configure();
-const TeachersItem = ({ active, item }) => {
+const TeachersItem = ({ item }) => {
   // console.log("item: ", item);
-  // const { isAuth } = useAuth();
 
   const dispatch = useDispatch();
-  const [isActive, setIsActive] = useState(active);
+  // const [isActive, setIsActive] = useState(active);
   const [expendedContent, setExpendedContent] = useState(false);
   const [isVisibleModal, setIsVisibleModal] = useState(false);
-  const isLoggedIn = useSelector(selectAuthIsLoggedIn);
+  // const isLoggedIn = useSelector(selectAuthIsLoggedIn);
   const favorite = useSelector(selectFavoriteTeachers);
-  // const { favorite } = useFavorite();
 
+  // Проверяем, есть ли элемент в избранном
   const inFavorite = favorite.some((fav) => fav?.id === item.id);
 
   const onClose = () => {
@@ -56,31 +53,34 @@ const TeachersItem = ({ active, item }) => {
   //     setIsActive(false);
   //   }
   // }, [favorite, id, isLoggedIn]);
-  function handleClick(event) {
-    event.preventDefault(); // Предотвращаем перезагрузку страницы
-    if (!isLoggedIn) {
-      toast.warning("Please log in", {
-        style: {
-          backgroundColor: "var(--main-color)",
-          color: "#fff",
-          padding: "16px",
-          fontSize: "18px",
-        },
-      });
-      return;
+  // function handleClick(event) {
+  //   event.preventDefault(); // Предотвращаем перезагрузку страницы
+  //   if (!isLoggedIn) {
+  //     toast.warning("Please log in", {
+  //       style: {
+  //         backgroundColor: "var(--main-color)",
+  //         color: "#fff",
+  //         padding: "16px",
+  //         fontSize: "18px",
+  //       },
+  //     });
+  //     return;
+  //   }
+  // }
+  const toogleFavorite = () => {
+    console.log("inFavorite: ", inFavorite); // Проверка состояния
+    if (inFavorite === true) {
+      // Логирование ID
+      dispatch(deleteFavorite(item.id));
+      console.log("item.id: ", item.id);
+      toast.success("Deleted successfully");
+    } else if (inFavorite === false) {
+      console.log("item: ", item); // Логирование объекта
+      dispatch(addFavorite(item));
+      toast.success("Add successfully");
     }
-    if (isLoggedIn) {
-      if (inFavorite === true) {
-        dispatch(deleteFavorite(item.id));
-        toast.success("Deleted successfully");
-        setIsActive(false);
-      } else {
-        dispatch(addFavorite(item));
-        toast.success("Add successfully");
-        setIsActive(true);
-      }
-    }
-  }
+  };
+
   // console.log(item); // Проверьте, что avatar_url присутствует
   // console.log(item.avatar_url);
   console.log(item.reviews);
@@ -98,6 +98,15 @@ const TeachersItem = ({ active, item }) => {
       <div className={css.teacherItem}>
         <div className={css.imgWrapper}>
           <img className={css.image} src={item.avatar_url} alt={item.name} />
+          {/* <img
+            onClick={toogleFavorite}
+            className={
+              inFavorite ? `${css.heartMob} ${css.favorite}` : css.heartMob
+            }
+            src="/Lingo-school/heart.svg"
+            alt="heart"
+            loading="lazy"
+          /> */}
         </div>
         <div>
           <div className={css.textWrapper}>
@@ -130,19 +139,17 @@ const TeachersItem = ({ active, item }) => {
               </li>
             </ul>
             {/* <img
-              onClick={addToFavorite}
+              onClick={toogleFavorite}
               className={
-                inFavorite && isAuth
-                  ? `${css.heart} ${css.favorite}`
-                  : css.heart
+                inFavorite ? `${css.heart} ${css.favorite}` : css.heart
               }
               src={Heartsvg}
               alt="heart"
               loading="lazy"
             /> */}
-            <button className={css.heartBtn} onClick={handleClick}>
+            <button className={css.heartBtn} onClick={toogleFavorite}>
               <svg
-                className={isActive ? css.favoritHeatIcon : css.iconHeart}
+                className={inFavorite ? css.favoritHeatIcon : css.iconHeart}
                 width="26"
                 height="26"
               >

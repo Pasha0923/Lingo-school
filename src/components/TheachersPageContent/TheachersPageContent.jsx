@@ -16,14 +16,18 @@ const TheachersPageContent = () => {
   const [filteredData, setFilteredData] = useState([]);
   const [isLoadingMore, setIsLoadingMore] = useState(false);
   const itemsPerPage = 4;
-
+  // У каждого объекта учителя будет уникальное поле id, и компонент TeachersItem
+  //   сможет использовать его для корректного добавления и удаления из избранного.
   useEffect(() => {
     if (data) {
-      setFilteredData(data);
-      setDataToShow(data.slice(0, visibleItemsCount));
+      const dataWithIds = data.map((item, index) => ({
+        ...item,
+        id: index + 1,
+      }));
+      setFilteredData(dataWithIds);
+      setDataToShow(dataWithIds.slice(0, visibleItemsCount));
     }
   }, [data, visibleItemsCount]);
-
   useEffect(() => {
     if (filteredData.length > 0) {
       setDataToShow(filteredData.slice(0, visibleItemsCount));
