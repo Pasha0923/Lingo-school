@@ -2,30 +2,24 @@ import css from "./TeachersItem.module.css";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-// import { Toaster } from "react-hot-toast";
-// import ReadMore from "../ReadMore/ReadMore";
-// import Modal from "../Modal/Modal";
-// import BookingModal from "../BookingModal/BookingModal";
 import { useDispatch, useSelector } from "react-redux";
-// import { addFavorite, deleteFavorite } from "../../redux/favoriteSlice";
-// import { useAuth, useFavorite } from "../../hooks/useAuth";
 
 import ModalWrapper from "../ModalWrapper/ModalWrapper";
 import { addFavorite, deleteFavorite } from "../../redux/favorites/slice";
-// import { useAuth } from "../hooks/useAuth";
+
 import BookingModal from "../BookingModal/BookingModal";
 import bookOpen from "../../assets/book-open.svg";
-import Heartsvg from "../../assets/heart.svg";
+
 import Starsvg from "../../assets/star.svg";
 import ReadMore from "../ReadMore/ReadMore";
 import sprite from "../../assets/sprite.svg";
-// import { selectAuthIsLoggedIn } from "../../redux/auth/selectors";
+
 import { selectFavoriteTeachers } from "../../redux/favorites/selectors";
 import { Toaster } from "react-hot-toast";
 import { useState } from "react";
 
-// import defaultImage from "../../assets/avatar.webp"; // Импортируем изображение по умолчанию
-// toast.configure();
+import defaultImage from "../../assets/avatar.webp"; // Импортируем изображение по умолчанию
+
 const TeachersItem = ({ item }) => {
   // console.log("item: ", item);
 
@@ -89,9 +83,13 @@ const TeachersItem = ({ item }) => {
   //   return null; // Не рендерим компонент, если отсутствуют нужные данные
   // }
 
-  const modifiedReviews = item.reviews.map((review) => ({
+  // const modifiedReviews = item.reviews.map((review) => ({
+  //   ...review,
+  //   avatar_url: review.avatar_url, // Добавьте сюда ваше значение по умолчанию
+  // }));
+  const updatedReviews = item.reviews.map((review) => ({
     ...review,
-    avatar_url: review.avatar_url, // Добавьте сюда ваше значение по умолчанию
+    reviewer_avatar: review.reviewer_avatar || defaultImage, // Убедитесь, что если нет аватара рецензента, подставляется значение по умолчанию
   }));
   return (
     <>
@@ -185,10 +183,7 @@ const TeachersItem = ({ item }) => {
           {/* Readmore + уровни A1 , A2, B1, B2 по фильтрам */}
           {expendedContent ? (
             <ReadMore
-              item={{
-                ...item,
-                reviews: modifiedReviews,
-              }}
+              item={{ ...item, reviews: updatedReviews }}
               setIsVisibleModal={setIsVisibleModal}
             />
           ) : (

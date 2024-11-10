@@ -61,24 +61,26 @@ const ReadMore = ({ item, setIsVisibleModal }) => {
     console.log("openBookingModal: ", openBookingModal);
     setIsVisibleModal(true);
   };
-
-  const defaultImg = `${defaultImage}`;
-
+  const teacherAvatarUrl = item.avatar_url || defaultImage;
   return (
     <div>
       <ul className={css.list}>
         {item.reviews && item.reviews.length > 0 ? (
           item.reviews.map((review) => {
-            // Проверяем наличие avatar_url и устанавливаем значение по умолчанию
-            // const avatarUrl = review.avatar_url;
-            console.log("Avatar URL for review:", review.avatar_url);
+            // Логируем информацию о каждом рецензенте
+            console.log("Reviewer avatar for review:", review.reviewer_avatar); // Логирование для каждого отзыва
+
+            const reviewerAvatarUrl =
+              review.reviewer_avatar || teacherAvatarUrl;
+
+            console.log("Reviewer Avatar URL:", reviewerAvatarUrl);
             return (
               <li className={css.item} key={review.comment}>
                 <div className={css.wrapper}>
                   <div className={css.image}>
                     <img
                       className={css.img}
-                      src={review.avatar_url ? review.avatar_url : defaultImg}
+                      src={reviewerAvatarUrl} // Используем проверенную ссылку на аватар или defaultImage
                       alt={review.reviewer_name}
                       // onError={(e) => {
                       //   e.target.src = defaultImg; // Заменяем изображение, если не удалось загрузить
