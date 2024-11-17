@@ -11,8 +11,6 @@ import Container from "./components/Container/Container";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 import { ToastContainer } from "react-toastify";
 
-// import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
-
 const HomePage = lazy(() => import("./pages/HomePage"));
 const TeachersPage = lazy(() => import("./pages/TheachersPage"));
 const FavoritesPage = lazy(() => import("./pages/FavoritesPage"));
@@ -23,7 +21,7 @@ function App() {
   const dispatch = useDispatch();
 
   const isRefreshing = useSelector(selectAuthRefreshing);
-
+  // const is404 = useMatch("*"); // Пытаемся захватить все маршруты
   useEffect(() => {
     const body = document.body;
 
@@ -48,16 +46,19 @@ function App() {
   if (isRefreshing) {
     return <Loader />;
   }
+  // Убираем Header для 404 страницы
+  const hideHeader = !["/", "/teachers", "/favorites"].includes(
+    location.pathname
+  );
 
   return (
     <Container>
-      |
       <ToastContainer /> {/* Добавляем ToastContainer здесь */}
       {/* <Logo />
       <Navigation />
       <ThemeChanger /> */}
       <Suspense fallback={<Loader />}>
-        <Layout>
+        <Layout hideHeader={hideHeader}>
           <main>
             <Routes>
               <Route path="/" element={<HomePage />} />
@@ -70,7 +71,7 @@ function App() {
                   </PrivateRoute>
                 }
               />
-              <Route path="*" element={<NotFoundPage replace />} />
+              <Route path="*" element={<NotFoundPage />} />
             </Routes>
           </main>
         </Layout>

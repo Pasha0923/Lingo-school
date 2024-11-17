@@ -1,10 +1,11 @@
 import Select from "react-select";
-// import { useGetAllTeachersQuery } from "../../../redux/servises";
-import css from "./LevelSelector.module.css";
+import css from "./LevelOfKnowledgeSelector.module.css";
 import { useGetAllTeachersQuery } from "../../../services/apiTeachers";
 
-const LevelSelector = ({ filterByLevel }) => {
+const LevelOfKnowledgeSelector = ({ filterByLevel }) => {
   const { data } = useGetAllTeachersQuery();
+  // Проверяем, есть ли данные. Если данных нет, компонент ничего не рендерит.
+  if (!data) return null;
   const unicArray = new Set();
 
   for (const item of data) {
@@ -15,6 +16,7 @@ const LevelSelector = ({ filterByLevel }) => {
   const uniqueLevelArray = Array.from(unicArray);
 
   const onSelectChange = (selectedOptions) => {
+    console.log("selectedOptions: ", selectedOptions);
     filterByLevel(selectedOptions.value);
   };
 
@@ -45,11 +47,11 @@ const LevelSelector = ({ filterByLevel }) => {
       fontSize: "18px",
       lineHeight: "20px",
       fontWeight: "500",
-      color: "var(--primary-black-121417)", // Колір обраного значення
+      color: "var(--primary-black-121417)",
     }),
     dropdownIndicator: (provided) => ({
       ...provided,
-      color: "var(--primary-black-121417)", // Колір стрілочки
+      color: "var(--primary-black-121417)",
     }),
     menu: (provided) => ({
       ...provided,
@@ -101,4 +103,4 @@ const LevelSelector = ({ filterByLevel }) => {
   );
 };
 
-export default LevelSelector;
+export default LevelOfKnowledgeSelector;

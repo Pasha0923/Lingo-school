@@ -8,11 +8,16 @@
 
 .active {
   color: var(--main-color);
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+  transition: color 200ms linear, text-underline-offset 200ms ease-in-out;
 }
 
 .link:hover {
   color: var(--hover-color);
   transition: color 200ms linear;
+  text-underline-offset: 6px; /* Подчеркивание чуть дальше при наведении */
 }
 
 .containerMenu {

@@ -8,9 +8,9 @@ import AuthNav from "../AuthNav/AuthNav";
 import UserMenu from "../UserMenu/UserMenu";
 import css from "./Header.module.css";
 
-const Header = () => {
+const Header = ({ hideHeader }) => {
   const isLoggedIn = useSelector(selectAuthIsLoggedIn);
-
+  if (hideHeader) return null; // Если hideHeader == true, не показываем шапку
   return (
     <header className={css.header}>
       <Logo />

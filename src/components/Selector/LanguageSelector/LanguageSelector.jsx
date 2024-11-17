@@ -1,7 +1,6 @@
 import Select from "react-select";
 import css from "./LanguageSelector.module.css";
 import { useGetAllTeachersQuery } from "../../../services/apiTeachers";
-// import { useGetAllTeachersQuery } from "../../../redux/servises";
 
 const LanguageSelector = ({ filterByLanguage }) => {
   const { data } = useGetAllTeachersQuery();

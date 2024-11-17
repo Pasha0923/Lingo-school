@@ -36,31 +36,7 @@ const TeachersItem = ({ item }) => {
   const onClose = () => {
     setIsVisibleModal(false);
   };
-  // if (!item || !item.id) {
-  //   console.error("Invalid item data:", item);
-  //   return null;
-  // }
-  // useEffect(() => {
-  //   if (isLoggedIn) {
-  //     setIsActive(favorite.some((item) => item.id === id));
-  //   } else {
-  //     setIsActive(false);
-  //   }
-  // }, [favorite, id, isLoggedIn]);
-  // function handleClick(event) {
-  //   event.preventDefault(); // Предотвращаем перезагрузку страницы
-  //   if (!isLoggedIn) {
-  //     toast.warning("Please log in", {
-  //       style: {
-  //         backgroundColor: "var(--main-color)",
-  //         color: "#fff",
-  //         padding: "16px",
-  //         fontSize: "18px",
-  //       },
-  //     });
-  //     return;
-  //   }
-  // }
+
   const toogleFavorite = () => {
     console.log("inFavorite: ", inFavorite); // Проверка состояния
     if (inFavorite === true) {
@@ -75,18 +51,9 @@ const TeachersItem = ({ item }) => {
     }
   };
 
-  // console.log(item); // Проверьте, что avatar_url присутствует
   // console.log(item.avatar_url);
   console.log(item.reviews);
-  // if (!item || !item.id || !item.avatar_url || !item.reviews) {
-  //   console.error("Invalid item data:", item);
-  //   return null; // Не рендерим компонент, если отсутствуют нужные данные
-  // }
 
-  // const modifiedReviews = item.reviews.map((review) => ({
-  //   ...review,
-  //   avatar_url: review.avatar_url, // Добавьте сюда ваше значение по умолчанию
-  // }));
   const updatedReviews = item.reviews.map((review) => ({
     ...review,
     reviewer_avatar: review.reviewer_avatar || defaultImage, // Убедитесь, что если нет аватара рецензента, подставляется значение по умолчанию

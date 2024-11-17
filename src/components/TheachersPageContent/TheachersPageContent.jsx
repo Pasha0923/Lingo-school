@@ -2,15 +2,17 @@ import { useEffect, useState } from "react";
 import TeachersList from "../../components/TeachersList/TeachersList";
 
 import LanguageSelector from "../../components/Selector/LanguageSelector/LanguageSelector";
-import CostSelector from "../../components/Selector/CostSelector/CostSelector";
-import LevelSelector from "../../components/Selector/LevelSelector/LevelSelector";
+import PriceSelector from "../Selector/PriceSelector/PriceSelector";
+import LevelOfKnowledgeSelector from "../Selector/LevelOfKnowledgeSelector/LevelOfKnowledgeSelector";
 import css from "./TheachersPageContent.module.css";
 import LoaderSpinner from "../../components/LoaderSpinner/LoaderSpinner";
 import { useGetAllTeachersQuery } from "../../services/apiTeachers";
 
 const TheachersPageContent = () => {
-  const { data, isLoading } = useGetAllTeachersQuery();
-  // console.log(" data: ", data);
+  //
+  const { data, isLoading } = useGetAllTeachersQuery(); // отправляем запрос на получение всех преподавателей с сервера.
+  console.log("isLoading: ", isLoading);
+  console.log(" data: ", data);
   const [dataToShow, setDataToShow] = useState([]);
   const [visibleItemsCount, setVisibleItemsCount] = useState(4);
   const [filteredData, setFilteredData] = useState([]);
@@ -22,10 +24,10 @@ const TheachersPageContent = () => {
     if (data) {
       const dataWithIds = data.map((item, index) => ({
         ...item,
-        id: index + 1,
+        id: index + 1, // Присваиваем уникальный ID
       }));
-      setFilteredData(dataWithIds);
-      setDataToShow(dataWithIds.slice(0, visibleItemsCount));
+      setFilteredData(dataWithIds); // Сохраняем полные данные для фильтрации
+      setDataToShow(dataWithIds.slice(0, visibleItemsCount)); // Отображаем первые N элементов
     }
   }, [data, visibleItemsCount]);
   useEffect(() => {
@@ -34,15 +36,15 @@ const TheachersPageContent = () => {
       setIsLoadingMore(false);
     }
   }, [visibleItemsCount, filteredData]);
-
-  //   const filterByPrice = (value) => {
-  //     const filteredAdverts = data.filter(
-  //       (item) => item.price_per_hour === +value
-  //     );
-  //     setFilteredData(filteredAdverts);
-  //     setDataToShow(filteredAdverts.slice(0, visibleItemsCount));
-  //   };
-
+  // 1. Фильтруем по цене
+  const filterByPrice = (value) => {
+    const filteredAdverts = data.filter(
+      (item) => item.price_per_hour === +value
+    );
+    setFilteredData(filteredAdverts);
+    setDataToShow(filteredAdverts.slice(0, visibleItemsCount));
+  };
+  // 2. Фильтруем по языкам
   const filterByLanguage = (lang) => {
     const filteredAdvertsByLanguage = data.filter((item) =>
       item.languages.includes(lang)
@@ -50,14 +52,14 @@ const TheachersPageContent = () => {
     setFilteredData(filteredAdvertsByLanguage);
     setDataToShow(filteredAdvertsByLanguage.slice(0, visibleItemsCount));
   };
-
-  //   const filterByLevel = (level) => {
-  //     const filteredAdvertsByLevel = data.filter((item) =>
-  //       item.levels.includes(level)
-  //     );
-  //     setFilteredData(filteredAdvertsByLevel);
-  //     setDataToShow(filteredAdvertsByLevel.slice(0, visibleItemsCount));
-  //   };
+  // 3. Фильтруем по уровню знаний языка
+  const filterByLevel = (level) => {
+    const filteredAdvertsByLevel = data.filter((item) =>
+      item.levels.includes(level)
+    );
+    setFilteredData(filteredAdvertsByLevel);
+    setDataToShow(filteredAdvertsByLevel.slice(0, visibleItemsCount));
+  };
 
   const onloadMore = () => {
     setIsLoadingMore(true);
@@ -71,8 +73,8 @@ const TheachersPageContent = () => {
           <>
             <div className={css.filters}>
               <LanguageSelector filterByLanguage={filterByLanguage} />
-              <LevelSelector filterByLevel={filterByLevel} />
-              <CostSelector filterByPrice={filterByPrice} />
+              <LevelOfKnowledgeSelector filterByLevel={filterByLevel} />
+              <PriceSelector filterByPrice={filterByPrice} />
             </div>
             <TeachersList data={dataToShow} active={false} />
             {dataToShow.length === visibleItemsCount && (

@@ -1,39 +1,4 @@
-// import { createSlice } from "@reduxjs/toolkit";
 
-// const initialState = {
-//   isLoggedIn: false,
-//   isRefresh: false,
-//   loading: false,
-//   error: null,
-//   auth: null,
-//   email: null,
-//   token: null,
-//   id: null,
-// };
-
-// const authSlice = createSlice({
-//   name: "auth",
-//   initialState,
-//   reducers: {
-//     setUser(state, action) {
-//       state.auth = action.payload.auth;
-//       state.email = action.payload.email;
-//       state.token = action.payload.token;
-//       state.id = action.payload.id;
-//       state.isLoggedIn = true; // Пользователь залогинен
-//     },
-//     removeUser(state) {
-//       state.auth = null;
-//       state.email = null;
-//       state.token = null;
-//       state.id = null;
-//       state.isLoggedIn = false; // Пользователь не залогинен
-//     },
-//   },
-// });
-
-// export const { setUser, removeUser } = authSlice.actions;
-// export const authReducer = authSlice.reducer;
 import { createSlice } from "@reduxjs/toolkit";
 import { registerUser, loginUser, logoutUser, refreshUser } from "./operations";
 

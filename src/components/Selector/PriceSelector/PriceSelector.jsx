@@ -1,9 +1,9 @@
 import Select from "react-select";
-// import { useGetAllTeachersQuery } from "../../../redux/servises";
-import css from "./CostSelectors.module.css";
+
+import css from "./PriceSelector.module.css";
 import { useGetAllTeachersQuery } from "../../../services/apiTeachers";
 
-const CostSelector = ({ filterByPrice }) => {
+const PriceSelector = ({ filterByPrice }) => {
   const { data } = useGetAllTeachersQuery();
 
   const unicPrice = {};
@@ -100,4 +100,4 @@ const CostSelector = ({ filterByPrice }) => {
   );
 };
 
-export default CostSelector;
+export default PriceSelector;

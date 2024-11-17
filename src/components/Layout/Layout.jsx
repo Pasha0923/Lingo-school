@@ -1,7 +1,7 @@
 import { ThemeProvider } from "next-themes";
 import Header from "../Header/Header";
 
-const Layout = ({ children }) => {
+const Layout = ({ children, hideHeader }) => {
   return (
     <>
       <ThemeProvider
@@ -10,7 +10,7 @@ const Layout = ({ children }) => {
         themes={["Yellow", "Green", "Blue", "Red", "Brown"]}
         enableSystem
       >
-        <Header />
+        {!hideHeader && <Header />}
         {children}
       </ThemeProvider>
     </>

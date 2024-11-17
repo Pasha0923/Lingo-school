@@ -1,0 +1,46 @@
+.link {
+  cursor: pointer;
+  margin-top: 24px;
+  padding: 8px 16px;
+  border-radius: 12px;
+  background-color: var(--secondary-green-CBDED3);
+}
+.section {
+  display: flex;
+  justify-content: center; /* Центрирование по горизонтали */
+  align-items: center; /* Центрирование по вертикали */
+  height: 100vh; /* Высота на всю видимую область */
+  padding: 0; /* Убираем отступы, чтобы центрировать по всей высоте */
+  text-align: center; /* Центрируем текст внутри */
+  /* background-image: url("/public/404_page-not-found.png"); */
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+.title {
+  margin-bottom: 12px;
+  font-size: 26px;
+  line-height: 32px;
+}
+.text {
+  font-style: 12px;
+  line-height: 18px;
+  width: 260px;
+}
+@media (min-width: 768px) {
+  .section {
+    padding: 32px 0;
+  }
+  .title {
+    margin-bottom: 20px;
+    font-size: 32px;
+    line-height: 38px;
+  }
+  .text {
+    font-style: 14px;
+    line-height: 20px;
+  }
+  .link {
+    margin-top: 32px;
+  }
+}

@@ -9,7 +9,7 @@ import { closeByEsc } from "../../services/functions";
 import sprite from "../../assets/sprite.svg";
 import css from "./Navigation.module.css";
 
-const Navigation = () => {
+const Navigation = ({ hideHeader }) => {
   const buildLinkClass = ({ isActive }) => {
     return clsx(css.link, isActive && css.active);
   };
@@ -31,7 +31,7 @@ const Navigation = () => {
   useEffect(() => {
     closeByEsc(closeMenu);
   }, []);
-
+  if (hideHeader) return null; // Скрываем навигацию, если hideHeader = true
   return (
     <>
       <nav className={css.nav}>
