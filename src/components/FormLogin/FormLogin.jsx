@@ -4,7 +4,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useState } from "react";
 
 import sprite from "../../assets/sprite.svg";
-import css from "./FormLogIn.module.css";
+import css from "./FormLogin.module.css";
 import { loginUser } from "../../redux/auth/operations";
 import { useDispatch } from "react-redux";
 
