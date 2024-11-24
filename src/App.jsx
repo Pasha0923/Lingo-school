@@ -3,13 +3,17 @@ import { Route, Routes, useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { selectAuthRefreshing } from "./redux/auth/selectors";
+import {
+  selectAuthIsLoggedIn,
+  selectAuthRefreshing,
+} from "./redux/auth/selectors";
 import Loader from "./components/Loader/Loader";
 import { refreshUser } from "./redux/auth/operations";
 import Layout from "./components/Layout/Layout";
 import Container from "./components/Container/Container";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 import { ToastContainer } from "react-toastify";
+import { setFavorites } from "./redux/favorites/slice";
 
 const HomePage = lazy(() => import("./pages/HomePage"));
 const TeachersPage = lazy(() => import("./pages/TheachersPage"));
@@ -19,9 +23,18 @@ const NotFoundPage = lazy(() => import("./pages/NotFoundPage"));
 function App() {
   const location = useLocation();
   const dispatch = useDispatch();
-
+  // useRestoreFavorites(); // Восстанавливаем избранное
   const isRefreshing = useSelector(selectAuthRefreshing);
-  // const is404 = useMatch("*"); // Пытаемся захватить все маршруты
+  const isLoggedIn = useSelector(selectAuthIsLoggedIn);
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      const favoriteItems = localStorage.getItem("favoriteItems");
+      if (favoriteItems) {
+        dispatch(setFavorites(JSON.parse(favoriteItems)));
+      }
+    }
+  }, [isLoggedIn, dispatch]);
   useEffect(() => {
     const body = document.body;
 
@@ -53,10 +66,8 @@ function App() {
 
   return (
     <Container>
-      <ToastContainer /> {/* Добавляем ToastContainer здесь */}
-      {/* <Logo />
-      <Navigation />
-      <ThemeChanger /> */}
+      <ToastContainer /> 
+    
       <Suspense fallback={<Loader />}>
         <Layout hideHeader={hideHeader}>
           <main>

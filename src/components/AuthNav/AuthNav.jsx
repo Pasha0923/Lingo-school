@@ -8,9 +8,11 @@ import sprite from "../../assets/sprite.svg";
 import ModalLogin from "../ModalLogin/ModalLogin";
 
 const AuthNav = () => {
+
   const [isOpen, setIsOpen] = useState(false);
   const [isLogInOpen, setIsLogInOpen] = useState(false);
   const [isRegistrOpen, setIsRegistrOpen] = useState(false);
+ 
 
   function openRegistrModal() {
     setIsRegistrOpen(true);

@@ -2,9 +2,7 @@ import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useState } from "react";
-// import { useDispatch } from "react-redux";
 
-// import { loginUser } from "../../redux/auth/operations";
 import sprite from "../../assets/sprite.svg";
 import css from "./FormLogIn.module.css";
 import { loginUser } from "../../redux/auth/operations";
@@ -38,11 +36,14 @@ const FormLogIn = ({ onCloseModal }) => {
 
   const [isVisible, setIsVisible] = useState(false);
 
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
+    // Залогирование пользователя
     dispatch(loginUser(data));
+
     reset();
     onCloseModal();
   };
+
   return (
     <div className={css.container}>
       <h2 className={css.title}>Log In</h2>

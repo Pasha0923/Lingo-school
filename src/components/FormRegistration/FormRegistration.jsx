@@ -2,13 +2,12 @@ import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useState } from "react";
-// import { useDispatch } from "react-redux";
 
-// import { registerUser } from "../../redux/auth/operations";
 import sprite from "../../assets/sprite.svg";
 import css from "./FormRegistration.module.css";
 import { registerUser } from "../../redux/auth/operations";
 import { useDispatch } from "react-redux";
+import { clearFavorites } from "../../redux/favorites/slice";
 
 const schema = yup
   .object({
@@ -44,6 +43,13 @@ const FormRegistration = ({ onCloseModal }) => {
   const [isVisible, setIsVisible] = useState(false);
 
   const onSubmit = (data) => {
+    // Очищаем избранное из localStorage
+    localStorage.removeItem("favoriteItems");
+
+    // Сбрасываем избранное в Redux
+    dispatch(clearFavorites());
+
+    // Регистрируем новго пользователя
     dispatch(registerUser(data));
     reset();
     onCloseModal();

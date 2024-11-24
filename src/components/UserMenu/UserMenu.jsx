@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useState, useEffect } from "react";
 
 import { selectAuthUser } from "../../redux/auth/selectors";
-// import { logoutUser } from "../../redux/auth/operations";
+
 import scrollController from "../../services/noScroll";
 import { closeByEsc } from "../../services/functions";
 import css from "./UserMenu.module.css";
@@ -12,6 +12,7 @@ import ModalLogout from "../ModalLogout/ModalLogout";
 
 const UserMenu = () => {
   const dispatch = useDispatch();
+
   const userData = useSelector(selectAuthUser);
   const [isLogInOpen, setIsLogInOpen] = useState(false);
   const [isOpen, setIsOpen] = useState(false);

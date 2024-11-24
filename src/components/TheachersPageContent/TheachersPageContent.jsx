@@ -9,7 +9,6 @@ import LoaderSpinner from "../../components/LoaderSpinner/LoaderSpinner";
 import { useGetAllTeachersQuery } from "../../services/apiTeachers";
 
 const TheachersPageContent = () => {
-  //
   const { data, isLoading } = useGetAllTeachersQuery(); // отправляем запрос на получение всех преподавателей с сервера.
   console.log("isLoading: ", isLoading);
   console.log(" data: ", data);
@@ -18,6 +17,7 @@ const TheachersPageContent = () => {
   const [filteredData, setFilteredData] = useState([]);
   const [isLoadingMore, setIsLoadingMore] = useState(false);
   const itemsPerPage = 4;
+
   // У каждого объекта учителя будет уникальное поле id, и компонент TeachersItem
   //   сможет использовать его для корректного добавления и удаления из избранного.
   useEffect(() => {

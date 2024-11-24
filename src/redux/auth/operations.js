@@ -9,6 +9,7 @@ import {
 } from "firebase/auth";
 import { auth } from "../../services/firebaseConfig";
 import toast from "react-hot-toast";
+import { clearFavorites } from "../favorites/slice";
 export const registerUser = createAsyncThunk(
   "auth/registerUser",
   async ({ name, email, password }, thunkAPI) => {
@@ -85,7 +86,8 @@ export const logoutUser = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       await signOut(auth);
-      return true;
+      thunkAPI.dispatch(clearFavorites()); // Очистка избранного после logout
+      return true; // Успешный logout
     } catch (error) {
       toast.success(error.message || "Something went wrong", {
         style: {

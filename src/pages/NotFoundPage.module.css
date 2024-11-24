@@ -7,12 +7,11 @@
 }
 .section {
   display: flex;
-  justify-content: center; /* Центрирование по горизонтали */
-  align-items: center; /* Центрирование по вертикали */
-  height: 100vh; /* Высота на всю видимую область */
-  padding: 0; /* Убираем отступы, чтобы центрировать по всей высоте */
-  text-align: center; /* Центрируем текст внутри */
-  /* background-image: url("/public/404_page-not-found.png"); */
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  padding: 0;
+  text-align: center;
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;

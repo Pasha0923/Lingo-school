@@ -18,17 +18,19 @@ import { selectFavoriteTeachers } from "../../redux/favorites/selectors";
 import { Toaster } from "react-hot-toast";
 import { useState } from "react";
 
-import defaultImage from "../../assets/avatar.webp"; // Импортируем изображение по умолчанию
+import defaultImage from "../../assets/avatar.webp";
+import { selectAuthIsLoggedIn } from "../../redux/auth/selectors";
 
 const TeachersItem = ({ item }) => {
   // console.log("item: ", item);
 
   const dispatch = useDispatch();
-  // const [isActive, setIsActive] = useState(active);
+
   const [expendedContent, setExpendedContent] = useState(false);
   const [isVisibleModal, setIsVisibleModal] = useState(false);
-  // const isLoggedIn = useSelector(selectAuthIsLoggedIn);
+
   const favorite = useSelector(selectFavoriteTeachers);
+  const isLoggedIn = useSelector(selectAuthIsLoggedIn); // Проверяем авторизацию
 
   // Проверяем, есть ли элемент в избранном
   const inFavorite = favorite.some((fav) => fav?.id === item.id);
@@ -39,6 +41,10 @@ const TeachersItem = ({ item }) => {
 
   const toogleFavorite = () => {
     console.log("inFavorite: ", inFavorite); // Проверка состояния
+    if (!isLoggedIn) {
+      toast.warning("You need to log in to manage favorites.");
+      return;
+    }
     if (inFavorite === true) {
       // Логирование ID
       dispatch(deleteFavorite(item.id));
@@ -51,27 +57,17 @@ const TeachersItem = ({ item }) => {
     }
   };
 
-  // console.log(item.avatar_url);
   console.log(item.reviews);
 
   const updatedReviews = item.reviews.map((review) => ({
     ...review,
-    reviewer_avatar: review.reviewer_avatar || defaultImage, // Убедитесь, что если нет аватара рецензента, подставляется значение по умолчанию
+    reviewer_avatar: review.reviewer_avatar || defaultImage,
   }));
   return (
     <>
       <div className={css.teacherItem}>
         <div className={css.imgWrapper}>
           <img className={css.image} src={item.avatar_url} alt={item.name} />
-          {/* <img
-            onClick={toogleFavorite}
-            className={
-              inFavorite ? `${css.heartMob} ${css.favorite}` : css.heartMob
-            }
-            src="/Lingo-school/heart.svg"
-            alt="heart"
-            loading="lazy"
-          /> */}
         </div>
         <div>
           <div className={css.textWrapper}>
@@ -103,15 +99,7 @@ const TeachersItem = ({ item }) => {
                 <span className={css.price}>{item.price_per_hour}$</span>
               </li>
             </ul>
-            {/* <img
-              onClick={toogleFavorite}
-              className={
-                inFavorite ? `${css.heart} ${css.favorite}` : css.heart
-              }
-              src={Heartsvg}
-              alt="heart"
-              loading="lazy"
-            /> */}
+
             <button className={css.heartBtn} onClick={toogleFavorite}>
               <svg
                 className={inFavorite ? css.favoritHeatIcon : css.iconHeart}

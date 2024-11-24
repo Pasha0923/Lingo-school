@@ -1,27 +1,22 @@
-// import { useSelector } from "react-redux";
-// import { Navigate } from "react-router-dom";
-
-// import { selectAuthIsLoggedIn } from "../../redux/auth/selectors";
-
-// const PrivateRoute = ({ children }) => {
-//   const isLoggedIn = useSelector(selectAuthIsLoggedIn);
-//   if (!isLoggedIn) {
-//     return <Navigate to="/login" />; // если не авторизован, перенаправить на страницу логина
-//   }
-
-//   return children; // если авторизован, отображать защищенный компонент
-//   // return isLoggedIn ? children : <Navigate to={redirectTo} replace />;
-// };
-
-// export default PrivateRoute;
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
 
 import { selectAuthIsLoggedIn } from "../../redux/auth/selectors";
+import { setFavorites } from "../../redux/favorites/slice";
+import { useEffect } from "react";
 
 const PrivateRoute = ({ children, redirectTo = "/" }) => {
   const isLoggedIn = useSelector(selectAuthIsLoggedIn);
+  const dispatch = useDispatch();
 
+  useEffect(() => {
+    if (isLoggedIn) {
+      const favoriteItems = localStorage.getItem("favoriteItems");
+      if (favoriteItems) {
+        dispatch(setFavorites(JSON.parse(favoriteItems))); // Восстанавливаем избранное
+      }
+    }
+  }, [isLoggedIn, dispatch]);
   return isLoggedIn ? children : <Navigate to={redirectTo} replace />;
 };
 
