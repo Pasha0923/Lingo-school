@@ -64,3 +64,20 @@ npm install
 ```
 
 - Перейди в браузері за адресою, що зазначено в терміналі.
+
+## Додавання змінних в .env
+
+Для зберігання конфігураційних даних, таких як API ключі, адреси серверів, порти та інші змінні використовуйте файл `.env`.
+Наприклад:
+
+VITE_API_KEY= # API KEY;
+VITE_AUTH_DOMAIN= # AUTHENTIFICATION DOMAIN
+VITE_DATABASE_URL= # DATABASE URL
+VITE_PROJECT_ID= # PROJECT ID
+VITE_STORAGE_BUCKET= # STORAGE BUCKET
+VITE_MESSAGING_SENDER_ID= # MESSAGING SENDER ID;
+VITE_APP_ID= # APP ID;
+VITE_MEASUREMENT_ID= #MEASUREMENT ID;
+
+Після цього необхідно dодати `.env` у файл `.gitignore`,
+для того щоб він зберігався лише локально на комп'ютері, не публікуючись на віддаленому репозиторії з метою безпеки.
