@@ -1,8 +1,21 @@
-# React + Vite
+# Lingo-school
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Даний застосунок було розроблено для користувачів, які бажають скористатися послугами викладачів з вивчення різних мов.
 
-Currently, two official plugins are available:
+## Front-end
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Застосунок складається з 3х сторінок:
+
+- сторінка “Home” з переліком переваг компанії та посиланням, за допомогою якого користувач перенаправляється на основну сторінку “Teachers” з переліком викладачів.
+
+- сторінка “Teachers”, яка складається з переліку викладачів, які користувач може фільтрувати за мовою викладання, за рівнем знань учнів та ціною за годину заняття.
+
+- приватна сторінка Favorites з викладачами , які були додані користувачем в обрані.
+
+### Back-end
+
+Авторизація користувача та робота з колекцією реалізовані за допомогою firebase.
+
+Для роботи з REST використано документацію firebase.
+
+В Realtime Database (by firebase) створено колекцію викладачів з наступними полями: name, surname, languages, levels, rating, reviews, price_per_hour, lessons_done, avatar_url, lesson_info, conditions, experience.
