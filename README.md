@@ -12,10 +12,37 @@
 
 - приватна сторінка Favorites з викладачами , які були додані користувачем в обрані.
 
-### Back-end
+## Back-end
 
-Авторизація користувача та робота з колекцією реалізовані за допомогою firebase.
+- Авторизація користувача та робота з колекцією реалізовані за допомогою [firebase](https://firebase.google.com/).
 
-Для роботи з REST використано документацію firebase.
+- Для роботи з REST використано [документацію firebase](https://firebase.google.com/docs/reference).
 
-В Realtime Database (by firebase) створено колекцію викладачів з наступними полями: name, surname, languages, levels, rating, reviews, price_per_hour, lessons_done, avatar_url, lesson_info, conditions, experience.
+- В Realtime Database (by firebase) створено колекцію викладачів з наступними полями: name, surname, languages, levels, rating, reviews, price_per_hour, lessons_done, avatar_url, lesson_info, conditions, experience.
+
+## Стек технологій
+
+- React
+- React-Router:
+- Redux
+- Formik
+- Yup
+- Axios
+- Redux Toolkit
+- React-hot-toast
+
+## Деплой
+
+Продакшн версія проєкту буде автоматично збиратися і деплоїтися на GitHub Pages, у гілку gh-pages, щоразу, коли оновлюється гілка main. Наприклад, після прямого пушу або прийнятого пул-реквесту. Для цього необхідно у файлі vite.config.js відредагувати поле base, замінивши react_vite на свою назву репозиторію "/your_repo_name", і відправити зміни на GitHub.
+
+Далі необхідно зайти в налаштування GitHub-репозиторію (Settings > Pages) і виставити роздачу продакшн версії файлів із папки /root гілки gh-pages, якщо це не було зроблено автоматично.
+
+## Статус деплоя
+
+Статус деплою крайнього коміту відображається іконкою біля його ідентифікатора.
+
+- Жовтий колір - виконується збірка і деплой проєкту.
+- Зелений колір - деплой завершився успішно.
+- Червоний колір - під час збирання або деплою сталася помилка.
+
+Детальнішу інформацію про статус можна подивитися, клікнувши на іконку, і в випадаючому вікні перейти за посиланням Details.
