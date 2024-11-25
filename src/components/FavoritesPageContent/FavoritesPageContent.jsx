@@ -1,12 +1,11 @@
 import TeachersList from "../../components/TeachersList/TeachersList";
-import { useFavorite } from "../../hooks/useAuth";
+import { useFavorite } from "../../hooks/useFavorite";
+
 import css from "./FavoritesPageContent.module.css";
 
 const FavoritePage = () => {
   const { isFavorite, favorite } = useFavorite();
   console.log(isFavorite);
-
-  // const isFavorite = favorite.find((item)=> item.id ===)
 
   return (
     <section className={css.favoriteSection}>
