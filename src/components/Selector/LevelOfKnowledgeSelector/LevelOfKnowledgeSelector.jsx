@@ -2,10 +2,11 @@ import Select from "react-select";
 import css from "./LevelOfKnowledgeSelector.module.css";
 import { useGetAllTeachersQuery } from "../../../services/apiTeachers";
 
-const LevelOfKnowledgeSelector = ({ filterByLevel }) => {
+const LevelOfKnowledgeSelector = ({ filterByLevel, selectedLevel }) => {
   const { data } = useGetAllTeachersQuery();
-  // Проверяем, есть ли данные. Если данных нет, компонент ничего не рендерит.
+
   if (!data) return null;
+
   const unicArray = new Set();
 
   for (const item of data) {
@@ -17,7 +18,7 @@ const LevelOfKnowledgeSelector = ({ filterByLevel }) => {
 
   const onSelectChange = (selectedOptions) => {
     console.log("selectedOptions: ", selectedOptions);
-    filterByLevel(selectedOptions.value);
+    filterByLevel(selectedOptions.value); // Обновляем состояние с выбранным уровнем
   };
 
   const customStyles = {
@@ -87,6 +88,9 @@ const LevelOfKnowledgeSelector = ({ filterByLevel }) => {
       <Select
         className={css.selector}
         classNamePrefix="selector"
+        value={
+          selectedLevel ? { label: selectedLevel, value: selectedLevel } : null
+        } // Передаем выбранный уровень знаний языка
         onChange={onSelectChange}
         name="language"
         options={

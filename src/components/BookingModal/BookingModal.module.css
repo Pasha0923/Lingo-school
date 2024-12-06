@@ -8,6 +8,10 @@
   height: auto;
   overflow: auto;
 }
+
+.bodyNoScroll {
+  overflow: hidden;
+}
 .title {
   font-size: 30px;
   line-height: 38px;

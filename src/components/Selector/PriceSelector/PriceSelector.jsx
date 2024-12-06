@@ -3,7 +3,7 @@ import Select from "react-select";
 import css from "./PriceSelector.module.css";
 import { useGetAllTeachersQuery } from "../../../services/apiTeachers";
 
-const PriceSelector = ({ filterByPrice }) => {
+const PriceSelector = ({ filterByPrice, selectedPrice }) => {
   const { data } = useGetAllTeachersQuery();
 
   const unicPrice = {};
@@ -84,6 +84,9 @@ const PriceSelector = ({ filterByPrice }) => {
       <Select
         className={css.selector}
         classNamePrefix="selector"
+        value={
+          selectedPrice ? { label: selectedPrice, value: selectedPrice } : null
+        } // Передаем выбранный прайс
         onChange={onSelectChange}
         name="price"
         options={

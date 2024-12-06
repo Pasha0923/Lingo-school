@@ -17,7 +17,9 @@ const TheachersPageContent = () => {
   const [filteredData, setFilteredData] = useState([]);
   const [isLoadingMore, setIsLoadingMore] = useState(false);
   const itemsPerPage = 4;
-
+  const [selectedLanguage, setSelectedLanguage] = useState("");
+  const [selectedPrice, setSelectedPrice] = useState("");
+  const [selectedLevel, setSelectedLevel] = useState("");
   // У каждого объекта учителя будет уникальное поле id, и компонент TeachersItem
   //   сможет использовать его для корректного добавления и удаления из избранного.
   useEffect(() => {
@@ -36,6 +38,14 @@ const TheachersPageContent = () => {
       setIsLoadingMore(false);
     }
   }, [visibleItemsCount, filteredData]);
+  const resetFilters = () => {
+    setFilteredData(data); // Сбрасываем фильтры
+    setDataToShow(data.slice(0, visibleItemsCount)); // Возвращаем первую страницу
+    setVisibleItemsCount(itemsPerPage); // Сбрасываем количество отображаемых карточек
+    setSelectedLanguage(""); // Сбрасываем язык
+    setSelectedPrice(""); // Сбрасываем цену
+    setSelectedLevel(""); // Сбрасываем уровень знаний
+  };
   // 1. Фильтруем по цене
   const filterByPrice = (value) => {
     const filteredAdverts = data.filter(
@@ -55,7 +65,7 @@ const TheachersPageContent = () => {
   // 3. Фильтруем по уровню знаний языка
   const filterByLevel = (level) => {
     const filteredAdvertsByLevel = data.filter((item) =>
-      item.levels.includes(level)
+      item.levels.some((lvl) => lvl.toLowerCase() === level.toLowerCase())
     );
     setFilteredData(filteredAdvertsByLevel);
     setDataToShow(filteredAdvertsByLevel.slice(0, visibleItemsCount));
@@ -65,16 +75,48 @@ const TheachersPageContent = () => {
     setIsLoadingMore(true);
     setVisibleItemsCount((prevState) => prevState + itemsPerPage);
   };
-
+  // Условие отображения кнопки сброса
+  const shouldShowResetButton =
+    selectedLanguage || selectedPrice || selectedLevel;
   return (
     <section className={css.teachersSection}>
       <div className="container">
         {data && (
           <>
             <div className={css.filters}>
-              <LanguageSelector filterByLanguage={filterByLanguage} />
-              <LevelOfKnowledgeSelector filterByLevel={filterByLevel} />
-              <PriceSelector filterByPrice={filterByPrice} />
+              <LanguageSelector
+                filterByLanguage={(lang) => {
+                  setSelectedLanguage(lang);
+                  filterByLanguage(lang);
+                }}
+                selectedLanguage={selectedLanguage}
+              />
+              <LevelOfKnowledgeSelector
+                filterByLevel={(level) => {
+                  setSelectedLevel(level);
+                  filterByLevel(level);
+                }}
+                selectedLevel={selectedLevel}
+              />
+              <PriceSelector
+                filterByPrice={(value) => {
+                  setSelectedPrice(value);
+                  filterByPrice(value);
+                }}
+                selectedPrice={selectedPrice}
+              />
+              {/* Добавляем кнопку сброса */}
+              {/* {filteredData.length !== data.length && (
+                <button className={css.resetFilters} onClick={resetFilters}>
+                  Reset Filters
+                </button>
+              )} */}
+              {/* Добавляем кнопку сброса с проверкой на выбранные фильтры */}
+              {shouldShowResetButton && (
+                <button className={css.resetFilters} onClick={resetFilters}>
+                  Reset Filters
+                </button>
+              )}
             </div>
             <TeachersList data={dataToShow} active={false} />
             {dataToShow.length === visibleItemsCount && (

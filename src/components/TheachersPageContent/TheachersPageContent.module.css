@@ -1,3 +1,25 @@
+.resetFilters {
+  background-color: #f5f5f5; /* Светлый фон */
+  color: #333; /* Темный текст */
+  border: 1px solid #ddd; /* Тонкая граница */
+  padding: 10px 20px;
+  border-radius: 50px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-bottom: -25px; /* Отступ между фильтрами */
+}
+
+.resetFilters:hover {
+  background-color: #e0e0e0; /* Более темный фон при наведении */
+  border-color: #ccc; /* Изменение цвета границы */
+}
+
+.resetFilters:active {
+  background-color: #d6d6d6; /* Фон при нажатии */
+  transform: scale(0.95); /* Легкое уменьшение кнопки */
+}
 .teachersSection {
   background-color: var(--secondary-beige-F8F8F8);
   min-height: 100vh;

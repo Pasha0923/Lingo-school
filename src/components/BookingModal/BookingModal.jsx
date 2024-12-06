@@ -1,12 +1,19 @@
+import { useEffect } from "react";
 import BookingForm from "../BookingForm/BookingForm";
-// import CloseBtn from "../Buttons/CloseBtn";
+
 import css from "./BookingModal.module.css";
 
 const BookingModal = ({ item, onClose }) => {
-  console.log("item: ", item);
+  useEffect(() => {
+    document.body.classList.add(css.bodyNoScroll);
+
+    return () => {
+      document.body.classList.remove(css.bodyNoScroll);
+    };
+  }, []);
+
   return (
     <div className={css.modal}>
-      {/* <CloseBtn onClose={onClose} /> */}
       <h2 className={css.title}>Book trial lesson</h2>
       <p className={css.text}>
         Our experienced tutor will assess your current language level, discuss

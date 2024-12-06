@@ -2,7 +2,7 @@ import Select from "react-select";
 import css from "./LanguageSelector.module.css";
 import { useGetAllTeachersQuery } from "../../../services/apiTeachers";
 
-const LanguageSelector = ({ filterByLanguage }) => {
+const LanguageSelector = ({ filterByLanguage, selectedLanguage }) => {
   const { data } = useGetAllTeachersQuery();
   const unicArray = new Set();
 
@@ -44,11 +44,11 @@ const LanguageSelector = ({ filterByLanguage }) => {
       fontSize: "18px",
       lineHeight: "20px",
       fontWeight: "500",
-      color: "var(--primary-black-121417)", // Колір обраного значення
+      color: "var(--primary-black-121417)",
     }),
     dropdownIndicator: (provided) => ({
       ...provided,
-      color: "var(--primary-black-121417)", // Колір стрілочки
+      color: "var(--primary-black-121417)",
     }),
     menu: (provided) => ({
       ...provided,
@@ -84,6 +84,11 @@ const LanguageSelector = ({ filterByLanguage }) => {
       <Select
         className={css.selector}
         classNamePrefix="selector"
+        value={
+          selectedLanguage
+            ? { label: selectedLanguage, value: selectedLanguage }
+            : null
+        } // Передаем выбранный язык
         onChange={onSelectChange}
         name="language"
         options={
