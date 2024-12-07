@@ -13,7 +13,7 @@ const PrivateRoute = ({ children, redirectTo = "/" }) => {
     if (isLoggedIn) {
       const favoriteItems = localStorage.getItem("favoriteItems");
       if (favoriteItems) {
-        dispatch(setFavorites(JSON.parse(favoriteItems))); // Восстанавливаем избранное
+        dispatch(setFavorites(JSON.parse(favoriteItems)));
       }
     }
   }, [isLoggedIn, dispatch]);

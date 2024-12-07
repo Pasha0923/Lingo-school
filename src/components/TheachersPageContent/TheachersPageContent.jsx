@@ -9,9 +9,8 @@ import LoaderSpinner from "../../components/LoaderSpinner/LoaderSpinner";
 import { useGetAllTeachersQuery } from "../../services/apiTeachers";
 
 const TheachersPageContent = () => {
-  const { data, isLoading } = useGetAllTeachersQuery(); // отправляем запрос на получение всех преподавателей с сервера.
-  console.log("isLoading: ", isLoading);
-  console.log(" data: ", data);
+  const { data, isLoading } = useGetAllTeachersQuery();
+
   const [dataToShow, setDataToShow] = useState([]);
   const [visibleItemsCount, setVisibleItemsCount] = useState(4);
   const [filteredData, setFilteredData] = useState([]);
@@ -20,16 +19,20 @@ const TheachersPageContent = () => {
   const [selectedLanguage, setSelectedLanguage] = useState("");
   const [selectedPrice, setSelectedPrice] = useState("");
   const [selectedLevel, setSelectedLevel] = useState("");
-  // У каждого объекта учителя будет уникальное поле id, и компонент TeachersItem
-  //   сможет использовать его для корректного добавления и удаления из избранного.
+
+  const addUniqueIds = (data) =>
+    data.map((item, index) => ({
+      ...item,
+      id: `${item.name}-${index}`,
+    }));
   useEffect(() => {
     if (data) {
       const dataWithIds = data.map((item, index) => ({
         ...item,
-        id: index + 1, // Присваиваем уникальный ID
+        id: index + 1,
       }));
-      setFilteredData(dataWithIds); // Сохраняем полные данные для фильтрации
-      setDataToShow(dataWithIds.slice(0, visibleItemsCount)); // Отображаем первые N элементов
+      setFilteredData(dataWithIds);
+      setDataToShow(dataWithIds.slice(0, visibleItemsCount));
     }
   }, [data, visibleItemsCount]);
   useEffect(() => {
@@ -38,44 +41,59 @@ const TheachersPageContent = () => {
       setIsLoadingMore(false);
     }
   }, [visibleItemsCount, filteredData]);
+
   const resetFilters = () => {
-    setFilteredData(data); // Сбрасываем фильтры
-    setDataToShow(data.slice(0, visibleItemsCount)); // Возвращаем первую страницу
-    setVisibleItemsCount(itemsPerPage); // Сбрасываем количество отображаемых карточек
-    setSelectedLanguage(""); // Сбрасываем язык
-    setSelectedPrice(""); // Сбрасываем цену
-    setSelectedLevel(""); // Сбрасываем уровень знаний
+    const dataWithIds = addUniqueIds(data);
+    console.log("Reset Filters Data:", dataWithIds);
+    setFilteredData(dataWithIds);
+    setDataToShow(dataWithIds.slice(0, itemsPerPage));
+    setVisibleItemsCount(itemsPerPage);
+    setSelectedLanguage("");
+    setSelectedPrice("");
+    setSelectedLevel("");
   };
-  // 1. Фильтруем по цене
+
   const filterByPrice = (value) => {
     const filteredAdverts = data.filter(
       (item) => item.price_per_hour === +value
     );
-    setFilteredData(filteredAdverts);
-    setDataToShow(filteredAdverts.slice(0, visibleItemsCount));
+
+    const filteredWithIds = addUniqueIds(filteredAdverts);
+
+    setFilteredData(filteredWithIds);
+
+    setDataToShow(filteredWithIds.slice(0, visibleItemsCount));
   };
-  // 2. Фильтруем по языкам
+
   const filterByLanguage = (lang) => {
     const filteredAdvertsByLanguage = data.filter((item) =>
       item.languages.includes(lang)
     );
-    setFilteredData(filteredAdvertsByLanguage);
-    setDataToShow(filteredAdvertsByLanguage.slice(0, visibleItemsCount));
+
+    const filteredWithIds = addUniqueIds(filteredAdvertsByLanguage);
+
+    setFilteredData(filteredWithIds);
+
+    setDataToShow(filteredWithIds.slice(0, visibleItemsCount));
   };
-  // 3. Фильтруем по уровню знаний языка
+
   const filterByLevel = (level) => {
     const filteredAdvertsByLevel = data.filter((item) =>
       item.levels.some((lvl) => lvl.toLowerCase() === level.toLowerCase())
     );
-    setFilteredData(filteredAdvertsByLevel);
-    setDataToShow(filteredAdvertsByLevel.slice(0, visibleItemsCount));
+
+    const filteredWithIds = addUniqueIds(filteredAdvertsByLevel);
+
+    setFilteredData(filteredWithIds);
+
+    setDataToShow(filteredWithIds.slice(0, visibleItemsCount));
   };
 
   const onloadMore = () => {
     setIsLoadingMore(true);
     setVisibleItemsCount((prevState) => prevState + itemsPerPage);
   };
-  // Условие отображения кнопки сброса
+
   const shouldShowResetButton =
     selectedLanguage || selectedPrice || selectedLevel;
   return (
@@ -105,12 +123,7 @@ const TheachersPageContent = () => {
                 }}
                 selectedPrice={selectedPrice}
               />
-              {/* Добавляем кнопку сброса */}
-              {/* {filteredData.length !== data.length && (
-                <button className={css.resetFilters} onClick={resetFilters}>
-                  Reset Filters
-                </button>
-              )} */}
+
               {/* Добавляем кнопку сброса с проверкой на выбранные фильтры */}
               {shouldShowResetButton && (
                 <button className={css.resetFilters} onClick={resetFilters}>

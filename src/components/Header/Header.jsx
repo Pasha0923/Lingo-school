@@ -10,7 +10,7 @@ import css from "./Header.module.css";
 
 const Header = ({ hideHeader }) => {
   const isLoggedIn = useSelector(selectAuthIsLoggedIn);
-  if (hideHeader) return null; // Если hideHeader == true, не показываем шапку
+  if (hideHeader) return null;
   return (
     <header className={css.header}>
       <Logo />

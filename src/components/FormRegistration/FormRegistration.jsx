@@ -43,13 +43,10 @@ const FormRegistration = ({ onCloseModal }) => {
   const [isVisible, setIsVisible] = useState(false);
 
   const onSubmit = (data) => {
-    // Очищаем избранное из localStorage
     localStorage.removeItem("favoriteItems");
 
-    // Сбрасываем избранное в Redux
     dispatch(clearFavorites());
 
-    // Регистрируем новго пользователя
     dispatch(registerUser(data));
     reset();
     onCloseModal();

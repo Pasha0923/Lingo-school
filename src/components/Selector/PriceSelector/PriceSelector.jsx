@@ -43,16 +43,15 @@ const PriceSelector = ({ filterByPrice, selectedPrice }) => {
       fontSize: "18px",
       lineHeight: "20px",
       fontWeight: "500",
-      color: "var(--primary-black-121417)", // Колір обраного значення
+      color: "var(--primary-black-121417)",
     }),
     dropdownIndicator: (provided) => ({
       ...provided,
-      color: "var(--primary-black-121417)", // Колір стрілочки
+      color: "var(--primary-black-121417)",
     }),
     menu: (provided) => ({
       ...provided,
       borderRadius: "10px",
-      //   borderRadius: '0',
       marginTop: "4px",
     }),
     menuList: (provided) => ({

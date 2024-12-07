@@ -23,7 +23,7 @@ const NotFoundPage = lazy(() => import("./pages/NotFoundPage"));
 function App() {
   const location = useLocation();
   const dispatch = useDispatch();
-  // useRestoreFavorites(); // Восстанавливаем избранное
+
   const isRefreshing = useSelector(selectAuthRefreshing);
   const isLoggedIn = useSelector(selectAuthIsLoggedIn);
 
@@ -59,15 +59,15 @@ function App() {
   if (isRefreshing) {
     return <Loader />;
   }
-  // Убираем Header для 404 страницы
+
   const hideHeader = !["/", "/teachers", "/favorites"].includes(
     location.pathname
   );
 
   return (
     <Container>
-      <ToastContainer /> 
-    
+      <ToastContainer />
+
       <Suspense fallback={<Loader />}>
         <Layout hideHeader={hideHeader}>
           <main>

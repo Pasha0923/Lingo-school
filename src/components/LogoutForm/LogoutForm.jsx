@@ -11,17 +11,15 @@ const LogoutForm = ({ onCloseModal }) => {
   const favoriteItems = useSelector(selectFavoriteTeachers);
 
   const handleLogout = () => {
-    // Очищаем избранное при logout
     localStorage.removeItem("favoriteItems");
     dispatch(clearFavorites());
     dispatch(logoutUser())
-      .unwrap() // Для обработки результата
+      .unwrap()
       .then(() => {
-        // Сохраняем избранное в localStorage при выходе
         localStorage.setItem("favoriteItems", JSON.stringify(favoriteItems));
 
         toast.success("You have successfully logged out");
-        // Закрываем модальное окно
+
         onCloseModal();
       })
       .catch((error) => {
@@ -36,10 +34,7 @@ const LogoutForm = ({ onCloseModal }) => {
         <button className={css.modalBtn} onClick={handleLogout}>
           Log out
         </button>
-        <button
-          className={css.modalBtnCancel}
-          onClick={onCloseModal} // Добавляем обработчик клика для Cancel
-        >
+        <button className={css.modalBtnCancel} onClick={onCloseModal}>
           Cancel
         </button>
       </div>

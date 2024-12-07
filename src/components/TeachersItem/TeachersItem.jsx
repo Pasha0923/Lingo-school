@@ -22,17 +22,14 @@ import defaultImage from "../../assets/avatar.webp";
 import { selectAuthIsLoggedIn } from "../../redux/auth/selectors";
 
 const TeachersItem = ({ item }) => {
-  // console.log("item: ", item);
-
   const dispatch = useDispatch();
 
   const [expendedContent, setExpendedContent] = useState(false);
   const [isVisibleModal, setIsVisibleModal] = useState(false);
 
   const favorite = useSelector(selectFavoriteTeachers);
-  const isLoggedIn = useSelector(selectAuthIsLoggedIn); // Проверяем авторизацию
+  const isLoggedIn = useSelector(selectAuthIsLoggedIn);
 
-  // Проверяем, есть ли элемент в избранном
   const inFavorite = favorite.some((fav) => fav?.id === item.id);
 
   const onClose = () => {
@@ -40,24 +37,19 @@ const TeachersItem = ({ item }) => {
   };
 
   const toogleFavorite = () => {
-    console.log("inFavorite: ", inFavorite); // Проверка состояния
     if (!isLoggedIn) {
       toast.warning("You need to log in to manage favorites.");
       return;
     }
     if (inFavorite === true) {
-      // Логирование ID
       dispatch(deleteFavorite(item.id));
-      console.log("item.id: ", item.id);
+
       toast.success("Deleted successfully");
     } else if (inFavorite === false) {
-      console.log("item: ", item); // Логирование объекта
       dispatch(addFavorite(item));
       toast.success("Add successfully");
     }
   };
-
-  console.log(item.reviews);
 
   const updatedReviews = item.reviews.map((review) => ({
     ...review,

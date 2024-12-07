@@ -31,7 +31,7 @@ const Navigation = ({ hideHeader }) => {
   useEffect(() => {
     closeByEsc(closeMenu);
   }, []);
-  if (hideHeader) return null; // Скрываем навигацию, если hideHeader = true
+  if (hideHeader) return null;
   return (
     <>
       <nav className={css.nav}>

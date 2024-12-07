@@ -5,7 +5,6 @@ import css from "./FavoritesPageContent.module.css";
 
 const FavoritePage = () => {
   const { isFavorite, favorite } = useFavorite();
-  console.log(isFavorite);
 
   return (
     <section className={css.favoriteSection}>

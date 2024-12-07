@@ -86,8 +86,8 @@ export const logoutUser = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       await signOut(auth);
-      thunkAPI.dispatch(clearFavorites()); // Очистка избранного после logout
-      return true; // Успешный logout
+      thunkAPI.dispatch(clearFavorites()); 
+      return true; 
     } catch (error) {
       toast.success(error.message || "Something went wrong", {
         style: {

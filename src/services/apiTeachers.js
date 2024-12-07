@@ -4,8 +4,8 @@ const BASE_URL = "https://lingo-school-a8368-default-rtdb.firebaseio.com";
 const API_TEACHERS_ENDPOINT = "/.json";
 
 export const teachersApi = createApi({
-  reducerPath: "teachers", // Уникальный ключ для хранения состояния
-  baseQuery: fetchBaseQuery({ baseUrl: BASE_URL }), // Базовый URL API
+  reducerPath: "teachers",
+  baseQuery: fetchBaseQuery({ baseUrl: BASE_URL }),
   tagTypes: ["Teachers"],
   endpoints: (builder) => ({
     getAllTeachers: builder.query({

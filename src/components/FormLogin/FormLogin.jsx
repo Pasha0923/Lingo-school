@@ -37,7 +37,6 @@ const FormLogIn = ({ onCloseModal }) => {
   const [isVisible, setIsVisible] = useState(false);
 
   const onSubmit = async (data) => {
-    // Залогирование пользователя
     dispatch(loginUser(data));
 
     reset();

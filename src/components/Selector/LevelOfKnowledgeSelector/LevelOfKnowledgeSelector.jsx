@@ -17,8 +17,7 @@ const LevelOfKnowledgeSelector = ({ filterByLevel, selectedLevel }) => {
   const uniqueLevelArray = Array.from(unicArray);
 
   const onSelectChange = (selectedOptions) => {
-    console.log("selectedOptions: ", selectedOptions);
-    filterByLevel(selectedOptions.value); // Обновляем состояние с выбранным уровнем
+    filterByLevel(selectedOptions.value);
   };
 
   const customStyles = {
